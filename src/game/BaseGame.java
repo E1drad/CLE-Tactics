@@ -12,9 +12,8 @@ public class BaseGame implements IGame {
 		}
 	}
 
-	public static void main(String[] args) {
-		
-		
+	@Override
+	public void newMap() {
 		ArrayList<ArrayList<BaseEntity>> matrix = new ArrayList<ArrayList<BaseEntity>>();
 		for(int i = 0; i < 10; ++i){
 			matrix.add(new ArrayList<BaseEntity>(10));
@@ -26,11 +25,6 @@ public class BaseGame implements IGame {
 		while(character.getHP() > 0){
 			
 		}
-	}
-
-	@Override
-	public void newMap() {
-		
 	}
 
 }
