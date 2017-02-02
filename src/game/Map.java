@@ -17,7 +17,7 @@ public class Map {
 	
 	public void executeTurn(){
 			for(int i = 0; i < this.characters.size(); ++i){
-				if(characters.get(i).getHitPoint() >= 0){
+				if(characters.get(i).getHP() >= 0){
 					characters.get(i).play();
 				}
 			}
