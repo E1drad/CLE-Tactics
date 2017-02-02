@@ -1,22 +1,22 @@
 package game;
 
-public class FreeCell {
-	private int value;
+public class Character {
+	private int hp;
 	private int id;
 	private int x;
 	private int y;
-	private Map currentMap;
+	private BaseMap currentMap;
 	
-	public FreeCell(int id, int x, int y, Map currentMap, int value) {
+	public Character(int id, int x, int y, BaseMap currentMap, int hp) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
 		this.currentMap = currentMap;
-		this.value = value;
+		this.hp = hp;
 	}
 
-	public int getValue() {
-		return this.value;
+	public int getHP() {
+		return this.hp;
 	}
 	
 	public int getId() {
@@ -31,8 +31,8 @@ public class FreeCell {
 		return this.y;
 	}
 
-	public Map getCurrentMap() {
+	public BaseMap getCurrentMap() {
 		return this.currentMap;
-	}
+	}	
 	
 }
