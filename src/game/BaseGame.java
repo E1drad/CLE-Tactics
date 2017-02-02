@@ -22,6 +22,7 @@ public class BaseGame implements IGame {
 		
 		Map map = new Map(matrix);
 		Character character = new Character(0, 0, 0, map, 10);
+		
 		while(character.getHP() > 0){
 			
 		}
