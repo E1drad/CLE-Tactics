@@ -1,0 +1,10 @@
+{
+  "extension": [
+    {
+      name : "class_name",
+      interface : "interface_name",
+      description : "descr",
+      autorun : true
+    }
+  ]
+}
