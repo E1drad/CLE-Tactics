@@ -1,6 +1,6 @@
 package game;
 
-public interface ICharacter {
+public interface ICharacter extends IEntity{
 
 	public abstract int getHP();
 
