@@ -3,13 +3,13 @@ package game;
 public class Character extends Entity {
 	private int hp;
 
-	public Character(int id, int x, int y, Map currentMap, int hitPoints) {
+	public Character(int id, int x, int y, Map currentMap, int hp) {
 		super(id, x, y, currentMap);
-		this.hp = hitPoints;
+		this.hp = hp;
 	}
 
 	public int getHP() {
-		return hp;
+		return this.hp;
 	}
 
 	public void play() {
