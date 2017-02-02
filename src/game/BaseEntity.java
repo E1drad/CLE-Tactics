@@ -1,12 +1,12 @@
 package game;
 
-public abstract class Entity {
+public abstract class BaseEntity {
 	private int id;
 	private int x;
 	private int y;
-	private Map currentMap;
+	private BaseMap currentMap;
 	
-	public Entity(int id, int x, int y, Map currentMap) {
+	public BaseEntity(int id, int x, int y, BaseMap currentMap) {
 		super();
 		this.id = id;
 		this.x = x;
@@ -26,7 +26,7 @@ public abstract class Entity {
 		return y;
 	}
 
-	public Map getCurrentMap() {
+	public BaseMap getCurrentMap() {
 		return currentMap;
 	}
 	
