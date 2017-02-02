@@ -1,13 +1,13 @@
 package game;
 
-public class Character {
+public class BaseCharacter {
 	private int hp;
 	private int id;
 	private int x;
 	private int y;
 	private BaseMap currentMap;
 	
-	public Character(int id, int x, int y, BaseMap currentMap, int hp) {
+	public BaseCharacter(int id, int x, int y, BaseMap currentMap, int hp) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
