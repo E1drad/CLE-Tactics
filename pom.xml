@@ -5,7 +5,7 @@
     <groupId>fr.nantes.CLE.CLE-Tactics</groupId>
     <artifactId>CLE-Tactics</artifactId>
     <version>1</version>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <prerequisites>
         <maven>3.3.9</maven>

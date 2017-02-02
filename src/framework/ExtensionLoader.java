@@ -4,15 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Properties;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class ExtensionLoader {
 
 	public static  Object loadExtension(String filename) throws FileNotFoundException, IOException {
-		Properties prop = new Properties();
 
-
-		prop.load( new FileReader (filename));
+        JSONObject prop = parseFile(filename);
 
 		try{
 		Class<?> cl= Class.forName((String)prop.get("class"));
@@ -35,4 +37,19 @@ public class ExtensionLoader {
 	}
 
 
+    public static JSONObject parseFile(String filename){
+        JSONParser parser = new JSONParser();
+
+        try {
+
+            Object obj = parser.parse(new FileReader(filename));
+
+            return (JSONObject) obj;
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
