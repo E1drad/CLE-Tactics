@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BaseGame implements IGame {
 
-	public void executeTurn(BaseMap map, ArrayList<Character> characters){
+	public void executeTurn(BaseMap map, ArrayList<ICharacter> characters){
 		for(int i = 0; i < characters.size(); ++i){
 			if(characters.get(i).getHP() >= 0){
 				
@@ -21,7 +21,7 @@ public class BaseGame implements IGame {
 		}
 		
 		BaseMap map = new BaseMap(matrix);
-		Character character = new Character(0, 0, 0, map, 10);
+		ICharacter character = (ICharacter) new BaseCharacter(0, 0, 0, map, 10);
 		
 		while(character.getHP() > 0){
 			
@@ -30,7 +30,6 @@ public class BaseGame implements IGame {
 
 	@Override
 	public void newMap() {
-		// TODO Auto-generated method stub
 		
 	}
 
