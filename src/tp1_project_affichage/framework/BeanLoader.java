@@ -28,7 +28,7 @@ public class BeanLoader {
 			}
 			return res;
 		}catch(Exception e){
-			System.out.println("oops an error has occured during the recuperation of the class");
+			System.out.println("BeanLoader.loadBean : An error has occured during the loading of the class");
 		}
 		return null;
 	}
