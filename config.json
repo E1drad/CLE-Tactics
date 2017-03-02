@@ -1,7 +1,8 @@
 {
   "extension": [
     {
-      name : "class_name",
+      name : "name",
+      class_name : "class_name"
       interface : "interface_name",
       description : "descr",
       autorun : true
