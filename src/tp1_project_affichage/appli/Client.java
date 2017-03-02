@@ -9,7 +9,7 @@ public class Client {
 		Object data;
 		IAffichage aff;
 		try{
-			data= BeanLoader.loadBeanWithAge("bean.txt");
+			data= BeanLoader.loadBean("bean.txt");
 			aff= (IAffichage) (new ExtLoader()).loadExtensionv2(IAffichage.class);
 			aff.affichage((IPersonne)data);
 		}catch(Exception e){

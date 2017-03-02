@@ -47,7 +47,7 @@ public class ExtensionLoader {
             return (JSONObject) obj;
 
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
