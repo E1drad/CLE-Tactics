@@ -2,29 +2,62 @@ package game;
 
 import java.util.ArrayList;
 
-public class BaseGame implements IGame {
+public class BaseGame {
 
-	public void executeTurn(BaseMap map, ArrayList<ICharacter> characters){
-		for(int i = 0; i < characters.size(); ++i){
-			if(characters.get(i).getHP() >= 0){
-				
-			}
-		}
+	public BaseGame(long MapWidth,long MapHeight) {
+		super();
+		this.map = new BaseMap(MapWidth,MapHeight);
 	}
-
-	@Override
-	public void newMap() {
-		ArrayList<ArrayList<BaseEntity>> matrix = new ArrayList<ArrayList<BaseEntity>>();
-		for(int i = 0; i < 10; ++i){
-			matrix.add(new ArrayList<BaseEntity>(10));
+	int timeInTurns=0;
+	BaseMap map;
+	ArrayList<BaseEntity> characters;
+	long identifierCount=0;
+	private boolean exitingGame;
+	
+	public void startGame(){
+		
+		addCharactersOnMap();
+		while(!exitingGame){
+			if (this.getTimeInTurns() > 1) this.setExitingGame(true);
+			this.setTimeInTurns(getTimeInTurns()+1);
+			executeTurn();
 		}
 		
-		BaseMap map = new BaseMap(matrix);
-		ICharacter character = (ICharacter) new BaseCharacter(0, 0, 0, map, 10);
-		
-		while(character.getHP() > 0){
-			
-		}
+	}
+	public void executeTurn(){
+		map.print();
 	}
 
+
+
+	public void addCharactersOnMap(){
+		int hp=20;
+		int maxHp=20;
+		EntityIdentifier id=new EntityIdentifier(++identifierCount);
+		int movementSpeed=10;
+		int team=1;
+		boolean capableOfUsingSkills=true;
+		boolean capableOfUsingNormalAttack=true;
+		boolean capableOfSkippingTurn=true;
+		boolean capableOfMoving=true;
+		boolean automatic=false;
+
+		
+		map.spawn(new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
+				capableOfUsingNormalAttack, capableOfSkippingTurn,
+				capableOfMoving, automatic));
+	}
+	
+	public boolean isExitingGame() {
+		return exitingGame;
+	}
+	public void setExitingGame(boolean exitingGame) {
+		this.exitingGame = exitingGame;
+	}
+	public int getTimeInTurns() {
+		return timeInTurns;
+	}
+	public void setTimeInTurns(int timeInTurns) {
+		this.timeInTurns = timeInTurns;
+	}
 }

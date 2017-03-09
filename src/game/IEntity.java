@@ -2,12 +2,49 @@ package game;
 
 public interface IEntity {
 
-	public abstract int getId();
+	public abstract int getHp();
 
-	public abstract int getX();
+	public abstract void setHp(int hp);
 
-	public abstract int getY();
+	public abstract int getMaxHp();
 
-	public abstract IMap getCurrentMap();
+	public abstract void setMaxHp(int maxHp);
+
+	public abstract EntityIdentifier getId();
+
+	public abstract void setId(EntityIdentifier id);
+
+	public abstract Position getPos();
+
+	public abstract void setPos(Position pos);
+
+	public abstract int getMovementSpeed();
+
+	public abstract void setMovementSpeed(int movementSpeed);
+
+	public abstract int getTeam();
+
+	public abstract void setTeam(int team);
+
+	public abstract boolean isCapableOfUsingSkills();
+
+	public abstract void setCapableOfUsingSkills(boolean capableOfUsingSkills);
+
+	public abstract boolean isCapableOfUsingNormalAttack();
+
+	public abstract void setCapableOfUsingNormalAttack(
+			boolean capableOfUsingNormalAttack);
+
+	public abstract boolean isCapableOfSkippingTurn();
+
+	public abstract void setCapableOfSkippingTurn(boolean capableOfSkippingTurn);
+
+	public abstract boolean isCapableOfMoving();
+
+	public abstract void setCapableOfMoving(boolean capableOfMoving);
+
+	public abstract boolean isAutomatic();
+
+	public abstract void setAutomatic(boolean automatic);
 
 }

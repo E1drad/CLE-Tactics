@@ -3,6 +3,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 import java.lang.reflect.Method;
+@SuppressWarnings("unused")
 public class BeanLoader {
 	
 	public static  Object loadBean(String filename) throws FileNotFoundException, IOException {
