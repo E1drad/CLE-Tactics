@@ -2,7 +2,7 @@ package game;
 
 public class BaseEntity implements IEntity{
 
-	public BaseEntity(int hp, int maxHp, EntityIdentifier id,
+	public BaseEntity(int hp, int maxHp, IEntityIdentifier id,
 			int movementSpeed, int team, boolean capableOfUsingSkills,
 			boolean capableOfUsingNormalAttack, boolean capableOfSkippingTurn,
 			boolean capableOfMoving, boolean automatic) {
@@ -20,8 +20,8 @@ public class BaseEntity implements IEntity{
 	}
 	private int hp;
 	private int maxHp;
-	private EntityIdentifier id;
-	private Position pos;
+	private IEntityIdentifier id;
+	private IPosition pos;
 	private int movementSpeed;
 	private int team;
 	private boolean capableOfUsingSkills;
@@ -41,16 +41,16 @@ public class BaseEntity implements IEntity{
 	public void setMaxHp(int maxHp) {
 		this.maxHp = maxHp;
 	}
-	public EntityIdentifier getId() {
+	public IEntityIdentifier getId() {
 		return id;
 	}
-	public void setId(EntityIdentifier id) {
+	public void setId(IEntityIdentifier id) {
 		this.id = id;
 	}
-	public Position getPos() {
+	public IPosition getPos() {
 		return pos;
 	}
-	public void setPos(Position pos) {
+	public void setPos(IPosition pos) {
 		this.pos = pos;
 	}
 	public int getMovementSpeed() {

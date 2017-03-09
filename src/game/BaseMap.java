@@ -17,7 +17,7 @@ public class BaseMap implements IMap {
 		
 		int hp=10;
 		int maxHp=10;
-		EntityIdentifier id=new EntityIdentifier(-1);
+		IEntityIdentifier id=new EntityIdentifier(-1);
 		int movementSpeed=0;
 		int team=0;
 		boolean capableOfUsingSkills=false;
@@ -99,13 +99,13 @@ public class BaseMap implements IMap {
 	}
 
 	@Override
-	public Position getEntityPos(int id) {
+	public IPosition getEntityPos(int id) {
 		// TODO Returns the first occurrence of the entity found in the map.
 		return new Position();
 	}
 
 	@Override
-	public void move(Position from, Position to) {
+	public void move(IPosition from, IPosition to) {
 		// TODO Auto-generated method stub
 		
 	}

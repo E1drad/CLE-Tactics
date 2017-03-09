@@ -1,6 +1,35 @@
 {
   "extension": [
     {
+      "name" : "EntityIdentifier",
+      "class_name" : "game.EntityIdentifier",
+      "interface" : "game.IEntityIdentifier",
+      "description" : "Module de base du jeu",
+      "autorun" : true
+    },
+    {
+      "name" : "Position",
+      "class_name" : "game.Position",
+      "interface" : "game.IPosition",
+      "description" : "Module de base du jeu",
+      "autorun" : true
+    },
+    
+    {
+      "name" : "Entity",
+      "class_name" : "game.BaseEntity",
+      "interface" : "game.IEntity",
+      "description" : "Module de base du jeu",
+      "autorun" : true
+    },
+    {
+      "name" : "Map",
+      "class_name" : "game.BaseMap",
+      "interface" : "game.IMap",
+      "description" : "Module de base du jeu",
+      "autorun" : true
+    },
+    {
       "name" : "CLE-Tactics",
       "class_name" : "game.BaseGame",
       "interface" : "game.IGame",

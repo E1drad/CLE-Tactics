@@ -10,13 +10,13 @@ public interface IEntity {
 
 	public abstract void setMaxHp(int maxHp);
 
-	public abstract EntityIdentifier getId();
+	public abstract IEntityIdentifier getId();
 
-	public abstract void setId(EntityIdentifier id);
+	public abstract void setId(IEntityIdentifier id);
 
-	public abstract Position getPos();
+	public abstract IPosition getPos();
 
-	public abstract void setPos(Position pos);
+	public abstract void setPos(IPosition pos);
 
 	public abstract int getMovementSpeed();
 
