@@ -18,6 +18,19 @@ public class BaseEntity implements IEntity{
 		this.capableOfMoving = capableOfMoving;
 		this.automatic = automatic;
 	}
+	public BaseEntity() {
+		super();
+		this.hp = 0;
+		this.maxHp = 0;
+		this.id = new EntityIdentifier(0);
+		this.movementSpeed = 0;
+		this.team = 0;
+		this.capableOfUsingSkills = false;
+		this.capableOfUsingNormalAttack = false;
+		this.capableOfSkippingTurn = false;
+		this.capableOfMoving = false;
+		this.automatic = false;
+	}
 	private int hp;
 	private int maxHp;
 	private IEntityIdentifier id;

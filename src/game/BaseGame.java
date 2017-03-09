@@ -14,6 +14,13 @@ public class BaseGame implements IGame {
 		this.identifierCount = 0;
 		this.exitingGame = exitingGame;
 	}
+	public BaseGame() {
+		super();
+		this.timeInTurns = 0;
+		this.map = new BaseMap(20, 5);
+		this.identifierCount = 0;
+		this.exitingGame = false;
+	}
 
 	int timeInTurns = 0;
 	BaseMap map;

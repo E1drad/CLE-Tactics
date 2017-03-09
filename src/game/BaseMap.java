@@ -8,6 +8,79 @@ public class BaseMap implements IMap {
 	long MapHeight;
 	int spawnedUnitsCount=0;
 	
+	public BaseMap() {
+		//TODO: initialize map with a layer of normal blocks at z=-1
+		
+		this.MapWidth=20;
+		this.MapHeight=5;
+		this.map = new ArrayList<ArrayList<ArrayList<BaseEntity>>>();
+		
+		int hp=10;
+		int maxHp=10;
+		IEntityIdentifier id=new EntityIdentifier(-1);
+		int movementSpeed=0;
+		int team=0;
+		boolean capableOfUsingSkills=false;
+		boolean capableOfUsingNormalAttack=false;
+		boolean capableOfSkippingTurn=false;
+		boolean capableOfMoving=false;
+		boolean automatic=true;
+
+		
+		
+		
+		BaseEntity floorBlock=new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
+				capableOfUsingNormalAttack, capableOfSkippingTurn,
+				capableOfMoving, automatic);
+		
+		 hp=0;
+		 maxHp=0;
+		 id=new EntityIdentifier(-2);
+		 movementSpeed=0;
+		 team=0;
+		 capableOfUsingSkills=false;
+		 capableOfUsingNormalAttack=false;
+		 capableOfSkippingTurn=false;
+		 capableOfMoving=false;
+		 automatic=true;
+
+		
+		
+		
+		BaseEntity airBlock=new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
+				capableOfUsingNormalAttack, capableOfSkippingTurn,
+				capableOfMoving, automatic);
+		
+		ArrayList<BaseEntity> vertical = new ArrayList<BaseEntity>();
+		
+		ArrayList<ArrayList<BaseEntity>> verticalAndDepth = new ArrayList<ArrayList<BaseEntity>>();
+		for( long y=0;y<MapHeight;y++){
+			
+			
+			
+			
+			if (y==0) {
+				 vertical.add(floorBlock);
+			}
+			else{
+				vertical.add(airBlock);
+			}
+			
+		}
+		
+		for( long z=0;z<MapWidth;z++){
+			
+			verticalAndDepth.add(vertical);
+		}
+		
+		
+		for( long x=0;x<MapWidth;x++){
+			map.add(verticalAndDepth);
+			
+		}
+	}
+	
+	
 	public BaseMap(long MapWidth,long MapHeight) {
 		//TODO: initialize map with a layer of normal blocks at z=-1
 		
