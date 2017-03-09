@@ -17,17 +17,17 @@ public class Position implements IPosition {
 		this.y = y;
 		this.z = z;
 	}
-
-	
-	int getX(){
+	@Override
+	public int getX() {
 		return x;
-	}
-	int getY(){
-		return y;
 	}
 	@Override
 	public void setX(int x) {
 		this.x = x;
+	}
+	@Override
+	public int getY() {
+		return y;
 	}
 	@Override
 	public void setY(int y) {
@@ -42,3 +42,4 @@ public class Position implements IPosition {
 		this.z = z;
 	}
 }
+

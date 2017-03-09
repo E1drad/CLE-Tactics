@@ -94,7 +94,7 @@ public class BaseMap implements IMap {
 	}
 
 	@Override
-	public BaseEntity getCell(Position p) {
+	public BaseEntity getCell(IPosition p) {
 		return map.get(p.getX()).get(p.getZ()).get(p.getY());
 	}
 
@@ -130,12 +130,12 @@ public class BaseMap implements IMap {
 			
 		}
 	}
-	public void setBlock ( Position pos, BaseEntity spawnedBlock ){
+	public void setBlock ( IPosition pos, BaseEntity spawnedBlock ){
 		map.get(pos.getX()).get(pos.getZ()).set(pos.getY(),spawnedBlock);
 	}
 	
 	@Override
-	public void spawnAtPosition(BaseEntity spawnedEntity, Position pos) {
+	public void spawnAtPosition(BaseEntity spawnedEntity, IPosition pos) {
 		//TODO: Check if HP == 0
 		map.get(pos.getX()).get(pos.getZ()).set(pos.getY(),spawnedEntity);
 		

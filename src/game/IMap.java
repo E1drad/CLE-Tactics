@@ -7,9 +7,9 @@ public interface IMap {
 	
 	public abstract double getMapWidth();
 	public abstract double getMapHeight();
-	public abstract BaseEntity getCell(Position p);
+	public abstract BaseEntity getCell(IPosition p);
 	public abstract IPosition getEntityPos(int id);
 	public abstract void move(IPosition from, IPosition to);
 	public abstract void spawn(BaseEntity spawnedEntity);
-	public void spawnAtPosition(BaseEntity spawnedEntity, Position pos);
+	public void spawnAtPosition(BaseEntity spawnedEntity, IPosition pos);
 }

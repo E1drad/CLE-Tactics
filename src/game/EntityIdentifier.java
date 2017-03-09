@@ -1,12 +1,19 @@
 package game;
 
 public class EntityIdentifier implements IEntityIdentifier {
+
+	private long id;
+	
+	public EntityIdentifier() {
+		super();
+		this.id = 0;
+	}
+	
 	public EntityIdentifier(long id) {
 		super();
 		this.id = id;
 	}
 
-	public long id;
 
 	@Override
 	public long getId() {
