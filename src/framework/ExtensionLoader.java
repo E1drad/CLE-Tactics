@@ -76,7 +76,7 @@ public class ExtensionLoader {
      * @param inter interface implémentée
      * @return une instance de l'interface
      */
-	public Object loadDefaultExtensionbyName(Class<?> inter){
+	public Object loadDefaultExtension(Class<?> inter){
         for(ExtensionDescr descr : extensions_ar){
             if(inter.getName().equals(descr.getInterface_name())){
                 try {
@@ -120,6 +120,14 @@ public class ExtensionLoader {
     }
 
 
+
+    public List<ExtensionDescr> getExtensions() {
+        return extensions;
+    }
+
+    public List<ExtensionDescr> getExtensions_ar() {
+        return extensions_ar;
+    }
 
     @Deprecated
     public Object loadExtension(String filename) throws FileNotFoundException, IOException {

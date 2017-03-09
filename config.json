@@ -1,11 +1,25 @@
 {
   "extension": [
     {
-      name : "name",
-      class_name : "class_name"
-      interface : "interface_name",
-      description : "descr",
+      name : "CLE-Tactics",
+      class_name : "BaseGame",
+      interface : "IGame",
+      description : "Module de base du jeu",
       autorun : true
-    }
+    },
+    {
+      name : "Monitoring",
+      class_name : "Monitor",
+      interface : "IMonitor",
+      description : "Module de supervision",
+      autorun : true
+    },
+    {
+      name : "Extension1",
+      class_name : "Extension1Name",
+      interface : "IExtension1",
+      description : "La première extension",
+      autorun : false
+    },
   ]
 }
