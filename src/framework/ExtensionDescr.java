@@ -3,11 +3,34 @@ package framework;
 
 public class ExtensionDescr {
 
+    /**
+     * Le nom de l'extension
+     */
     private String name;
+
+    /**
+     * Le nom de la classe
+     */
     private String class_name;
+
+    /**
+     * Le nom de l'interface implémentée par l'extension
+     */
     private String interface_name;
+
+    /**
+     * la description de l'extension
+     */
     private String description;
+
+    /**
+     * vrai si l'extension se lance au démarrage. Faux sinon.
+     */
     private boolean autorun;
+
+    /**
+     * vrai si l'extension est en cours d'exécution
+     */
     private boolean isRunning;
 
     public ExtensionDescr(){}

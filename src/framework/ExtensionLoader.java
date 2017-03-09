@@ -36,7 +36,7 @@ public class ExtensionLoader {
      * Constructeur
      */
     private ExtensionLoader(){
-        config = parseFile("");
+        config = parseFile("config.json");
         setExtensionDescr();
     }
 
@@ -71,24 +71,26 @@ public class ExtensionLoader {
         }
     }
 
+    /**
+     * Charge une extension autorun qui implémente l'interface spécifié
+     * @param inter interface implémentée
+     * @return une instance de l'interface
+     */
 	public Object loadDefaultExtensionbyName(Class<?> inter){
-        for(Object extension : config){
-            JSONObject e = (JSONObject) extension;
-            if(inter.getName().equals(e.get("interface"))){
-                if((boolean)e.get("autorun")){
-                    try {
-                        Class<?> cl = Class.forName((String)e.get("class_name"));
-                        Object res  = cl.newInstance();
-                    } catch (ClassNotFoundException e1) {
-                        e1.printStackTrace();
-                        return null;
-                    } catch (InstantiationException e1) {
-                        e1.printStackTrace();
-                        return null;
-                    } catch (IllegalAccessException e1) {
-                        e1.printStackTrace();
-                        return null;
-                    }
+        for(ExtensionDescr descr : extensions_ar){
+            if(inter.getName().equals(descr.getInterface_name())){
+                try {
+                    Class<?> cl = Class.forName(descr.getClass_name());
+                    Object res  = cl.newInstance();
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                    return null;
+                } catch (InstantiationException e1) {
+                    e1.printStackTrace();
+                    return null;
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                    return null;
                 }
             }
         }
@@ -119,7 +121,7 @@ public class ExtensionLoader {
 
 
 
-
+    @Deprecated
     public Object loadExtension(String filename) throws FileNotFoundException, IOException {
 /*
         //SONObject prop = parseFile(filename);
@@ -144,7 +146,12 @@ public class ExtensionLoader {
 
 	}
 
-    private static JSONArray parseFile(String filename){
+    /**
+     * Parser de fichier config en json
+     * @param filename le fichier de config à parser
+     * @return le tableau des extensions
+     */
+    private JSONArray parseFile(String filename){
         JSONParser parser = new JSONParser();
         try {
             JSONObject obj = (JSONObject)parser.parse(new FileReader(filename));
