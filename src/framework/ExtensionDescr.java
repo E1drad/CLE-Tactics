@@ -8,6 +8,7 @@ public class ExtensionDescr {
     private String interface_name;
     private String description;
     private boolean autorun;
+    private boolean isRunning;
 
     public ExtensionDescr(){}
 
@@ -49,5 +50,13 @@ public class ExtensionDescr {
 
     public void setAutorun(boolean autorun) {
         this.autorun = autorun;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean running) {
+        isRunning = running;
     }
 }
