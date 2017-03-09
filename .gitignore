@@ -1,2 +1,4 @@
 .idea/
 CLE-Tactics.iml
+/target/
+.project
