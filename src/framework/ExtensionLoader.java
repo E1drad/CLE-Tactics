@@ -12,30 +12,63 @@ import org.json.simple.parser.JSONParser;
 
 public class ExtensionLoader {
 
+    /**
+     * Instance unique de l'ExtensionLoader
+     */
     private static ExtensionLoader INSTANCE;
+
+    /**
+     * Fichier de configuration au format JSON
+     */
     private JSONArray config;
 
-    public ExtensionLoader(){
+    /**
+     * liste d'extensions qui ne sont pas en autorun
+     */
+    private List<ExtensionDescr> extensions;
+
+    /**
+     * liste d'extensions qui sont en autorun
+     */
+    private List<ExtensionDescr> extensions_ar;
+
+    /**
+     * Constructeur
+     */
+    private ExtensionLoader(){
         config = parseFile("");
+        setExtensionDescr();
     }
 
+    /**
+     * Retourne l'instance de la classe ExtensionLoader
+     * @return instance en cours
+     */
     public static synchronized ExtensionLoader getInstance() {
         if(INSTANCE == null)
             INSTANCE = new ExtensionLoader();
         return INSTANCE;
     }
 
-    public List<ExtensionDescr> getExtensionDescr(Class<?> inter){
-        ArrayList<ExtensionDescr> d = new ArrayList<ExtensionDescr>();
+    /**
+     * mets à jour les listes de descriptions d'extensions.
+     */
+    private void setExtensionDescr(){
+        extensions = new ArrayList<ExtensionDescr>();
+        extensions_ar = new ArrayList<ExtensionDescr>();
         for(Object extension : config) {
             JSONObject e = (JSONObject) extension;
-            if (inter.getName().equals(e.get("interface"))) {
-                d.add(
-                        new ExtensionDescr()//.setName((String)e.get("Name"))
-                );
-            }
+            ExtensionDescr descr = new ExtensionDescr();
+            descr.setName((String)e.get("Name"));
+            descr.setAutorun((boolean)e.get("autorun"));
+            descr.setClass_name((String)e.get("Class_name"));
+            descr.setInterface_name((String)e.get("interface"));
+            descr.setDescription((String)e.get("Name"));
+            if(descr.isAutorun())
+                extensions_ar.add(descr);
+            else
+                extensions.add(descr);
         }
-        return null;
     }
 
 	public Object loadDefaultExtensionbyName(Class<?> inter){
