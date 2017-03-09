@@ -1,25 +1,25 @@
 {
   "extension": [
     {
-      name : "CLE-Tactics",
-      class_name : "BaseGame",
-      interface : "IGame",
-      description : "Module de base du jeu",
-      autorun : true
+      "name" : "CLE-Tactics",
+      "class_name" : "game.BaseGame",
+      "interface" : "game.IGame",
+      "description" : "Module de base du jeu",
+      "autorun" : true
     },
     {
-      name : "Monitoring",
-      class_name : "Monitor",
-      interface : "IMonitor",
-      description : "Module de supervision",
-      autorun : true
+      "name" : "Monitoring",
+      "class_name" : "game.Monitor",
+      "interface" : "game.IMonitor",
+      "description" : "Module de supervision",
+      "autorun" : true
     },
     {
-      name : "Extension1",
-      class_name : "Extension1Name",
-      interface : "IExtension1",
-      description : "La première extension",
-      autorun : false
-    },
+      "name" : "Extension1",
+      "class_name" : "Extension1Name",
+      "interface" : "IExtension1",
+      "description" : "La premiere extension",
+      "autorun" : false
+    }
   ]
 }

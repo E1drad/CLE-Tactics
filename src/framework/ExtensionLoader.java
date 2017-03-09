@@ -59,11 +59,11 @@ public class ExtensionLoader {
         for(Object extension : config) {
             JSONObject e = (JSONObject) extension;
             ExtensionDescr descr = new ExtensionDescr();
-            descr.setName((String)e.get("Name"));
+            descr.setName((String)e.get("name"));
             descr.setAutorun((boolean)e.get("autorun"));
-            descr.setClass_name((String)e.get("Class_name"));
+            descr.setClass_name((String)e.get("class_name"));
             descr.setInterface_name((String)e.get("interface"));
-            descr.setDescription((String)e.get("Name"));
+            descr.setDescription((String)e.get("description"));
             if(descr.isAutorun())
                 extensions_ar.add(descr);
             else
@@ -82,6 +82,9 @@ public class ExtensionLoader {
                 try {
                     Class<?> cl = Class.forName(descr.getClass_name());
                     Object res  = cl.newInstance();
+                    descr.setRunning(true);
+                    return res;
+
                 } catch (ClassNotFoundException e1) {
                     e1.printStackTrace();
                     return null;

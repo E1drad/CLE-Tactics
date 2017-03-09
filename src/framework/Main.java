@@ -1,6 +1,9 @@
 package framework;
 
 
+import game.IGame;
+import game.IMonitor;
+
 import java.util.List;
 
 public class Main {
@@ -8,10 +11,12 @@ public class Main {
         ExtensionLoader loader = ExtensionLoader.getInstance();
         List<ExtensionDescr> defaultExt = loader.getExtensions_ar();
 
-        for(ExtensionDescr descr : defaultExt) {
-            loader.loadExtensionbyDescr(descr);
-            System.out.println("Extension : "+descr.getName()+
-                    " chargé avec succès");
+        IMonitor monitor = (IMonitor)
+                loader.loadDefaultExtension(IMonitor.class);
+        IGame game = (IGame) loader.loadDefaultExtension(IGame.class);
+
+        for(String ext : monitor.isLoad(loader.getExtensions_ar())){
+            System.out.println("Extension : "+ext+" chargée avec succès.");
         }
     }
 

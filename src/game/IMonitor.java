@@ -1,5 +1,7 @@
 package game;
 
+import framework.ExtensionDescr;
+
 import java.util.List;
 
 public interface IMonitor {
