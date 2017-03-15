@@ -1,4 +1,4 @@
-package game;
+package game.old;
 
 public class EntityIdentifier implements IEntityIdentifier {
 
@@ -13,7 +13,6 @@ public class EntityIdentifier implements IEntityIdentifier {
 		super();
 		this.id = id;
 	}
-
 
 	@Override
 	public long getId() {

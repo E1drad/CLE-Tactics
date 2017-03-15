@@ -1,19 +1,23 @@
 package game;
 
+import java.util.ArrayList;
+
 public interface IGame {
 
-	public abstract void startGame();
+	void play();
 
-	public abstract void executeTurn();
+	int getTurn();
 
-	public abstract void addCharactersOnMap();
+	void setTurn(int turn);
 
-	public abstract boolean isExitingGame();
+	IMap getMap();
 
-	public abstract void setExitingGame(boolean exitingGame);
+	void setMap(IMap map);
 
-	public abstract int getTimeInTurns();
+	ArrayList<IEntity> getCharacters();
 
-	public abstract void setTimeInTurns(int timeInTurns);
+	void setCharacters(ArrayList<IEntity> characters);
+
+	void addCharactersOnMap(IEntity entity, int height, int width);
 
 }

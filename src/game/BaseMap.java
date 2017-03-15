@@ -2,215 +2,154 @@ package game;
 
 import java.util.ArrayList;
 
+/**
+ * @brief A rectangular map.
+ * @author Charles BEGAUDEAU
+ *
+ */
+
 public class BaseMap implements IMap {
-	private ArrayList<ArrayList<ArrayList<BaseEntity>>> map;
-	long MapWidth;
-	long MapHeight;
-	int spawnedUnitsCount=0;
-	
-	public BaseMap() {
-		//TODO: initialize map with a layer of normal blocks at z=-1
-		
-		this.MapWidth=20;
-		this.MapHeight=5;
-		this.map = new ArrayList<ArrayList<ArrayList<BaseEntity>>>();
-		
-		int hp=10;
-		int maxHp=10;
-		IEntityIdentifier id=new EntityIdentifier(-1);
-		int movementSpeed=0;
-		int team=0;
-		boolean capableOfUsingSkills=false;
-		boolean capableOfUsingNormalAttack=false;
-		boolean capableOfSkippingTurn=false;
-		boolean capableOfMoving=false;
-		boolean automatic=true;
+	private ArrayList<ArrayList<ICellule>> map;
 
-		
-		
-		
-		BaseEntity floorBlock=new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
-				capableOfUsingNormalAttack, capableOfSkippingTurn,
-				capableOfMoving, automatic);
-		
-		 hp=0;
-		 maxHp=0;
-		 id=new EntityIdentifier(-2);
-		 movementSpeed=0;
-		 team=0;
-		 capableOfUsingSkills=false;
-		 capableOfUsingNormalAttack=false;
-		 capableOfSkippingTurn=false;
-		 capableOfMoving=false;
-		 automatic=true;
-
-		
-		
-		
-		BaseEntity airBlock=new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
-				capableOfUsingNormalAttack, capableOfSkippingTurn,
-				capableOfMoving, automatic);
-		
-		ArrayList<BaseEntity> vertical = new ArrayList<BaseEntity>();
-		
-		ArrayList<ArrayList<BaseEntity>> verticalAndDepth = new ArrayList<ArrayList<BaseEntity>>();
-		for( long y=0;y<MapHeight;y++){
-			
-			
-			
-			
-			if (y==0) {
-				 vertical.add(floorBlock);
-			}
-			else{
-				vertical.add(airBlock);
-			}
-			
-		}
-		
-		for( long z=0;z<MapWidth;z++){
-			
-			verticalAndDepth.add(vertical);
-		}
-		
-		
-		for( long x=0;x<MapWidth;x++){
-			map.add(verticalAndDepth);
-			
-		}
-	}
-	
-	
-	public BaseMap(long MapWidth,long MapHeight) {
-		//TODO: initialize map with a layer of normal blocks at z=-1
-		
-		this.MapWidth=MapWidth;
-		this.MapHeight=MapHeight;
-		this.map = new ArrayList<ArrayList<ArrayList<BaseEntity>>>();
-		
-		int hp=10;
-		int maxHp=10;
-		IEntityIdentifier id=new EntityIdentifier(-1);
-		int movementSpeed=0;
-		int team=0;
-		boolean capableOfUsingSkills=false;
-		boolean capableOfUsingNormalAttack=false;
-		boolean capableOfSkippingTurn=false;
-		boolean capableOfMoving=false;
-		boolean automatic=true;
-
-		
-		
-		
-		BaseEntity floorBlock=new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
-				capableOfUsingNormalAttack, capableOfSkippingTurn,
-				capableOfMoving, automatic);
-		
-		 hp=0;
-		 maxHp=0;
-		 id=new EntityIdentifier(-2);
-		 movementSpeed=0;
-		 team=0;
-		 capableOfUsingSkills=false;
-		 capableOfUsingNormalAttack=false;
-		 capableOfSkippingTurn=false;
-		 capableOfMoving=false;
-		 automatic=true;
-
-		
-		
-		
-		BaseEntity airBlock=new BaseEntity(hp, maxHp, id, movementSpeed, team, capableOfUsingSkills,
-				capableOfUsingNormalAttack, capableOfSkippingTurn,
-				capableOfMoving, automatic);
-		
-		ArrayList<BaseEntity> vertical = new ArrayList<BaseEntity>();
-		
-		ArrayList<ArrayList<BaseEntity>> verticalAndDepth = new ArrayList<ArrayList<BaseEntity>>();
-		for( long y=0;y<MapHeight;y++){
-			
-			
-			
-			
-			if (y==0) {
-				 vertical.add(floorBlock);
-			}
-			else{
-				vertical.add(airBlock);
-			}
-			
-		}
-		
-		for( long z=0;z<MapWidth;z++){
-			
-			verticalAndDepth.add(vertical);
-		}
-		
-		
-		for( long x=0;x<MapWidth;x++){
-			map.add(verticalAndDepth);
-			
-		}
-	}
-
-	
-	@Override
-	public double getMapWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getMapHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public BaseEntity getCell(IPosition p) {
-		return map.get(p.getX()).get(p.getZ()).get(p.getY());
-	}
-
-	@Override
-	public IPosition getEntityPos(int id) {
-		// TODO Returns the first occurrence of the entity found in the map.
-		return new Position();
-	}
-
-	@Override
-	public void move(IPosition from, IPosition to) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void spawn(BaseEntity spawnedEntity) {
-		spawnAtPosition(spawnedEntity,new Position(++spawnedUnitsCount,0,0));
-		
-	}
-	public void print(){
-		
-		for( int y=0;y<MapHeight;y++){
-			System.out.println("Etage" + y);
-			for( int z=0;z<MapWidth;z++){
-				for( int x=0;x<MapWidth;x++){
-					System.out.print(getCell(new Position(x,y,z)).getId().getId());
-					
+	public BaseMap(ArrayList<ArrayList<ICellule>> map){
+		if (map.size() == 0){
+			throw new ArrayIndexOutOfBoundsException("The height of the BaseMap is equal to zero"); 
+		}else if (map.get(0).size() == 0){
+			throw new ArrayIndexOutOfBoundsException("The width of the BaseMap is equal to zero"); 
+		}else{
+			int i;
+			int sizeOfColumn;
+			i = 0;
+			sizeOfColumn = map.get(0).size();
+			while(i < map.size()){
+				if(sizeOfColumn != map.get(i).size()) {
+					throw new ArrayIndexOutOfBoundsException(
+							"The size of the columns of the BaseMap is not constant"); 
 				}
-				System.out.println();
 			}
-			
+		}
+		this.map = map;
+	}
+	
+	public BaseMap(int height, int width, ICellule baseCellule){
+		if (height <= 0){
+			throw new ArrayIndexOutOfBoundsException("The height of the BaseMap is inferior or equal to zero"); 
+		}else if (width <= 0){
+			throw new ArrayIndexOutOfBoundsException("The width of the BaseMap is inferior or equal to zero"); 
+		}
+		
+		this.map = new ArrayList<ArrayList<ICellule>>();
+		for(int i = 0; i < height; ++i){
+			this.map.add(new ArrayList<ICellule>());
+			for(int j = 0; j < width; ++j){
+				this.map.get(i).add(baseCellule);
+			}
 		}
 	}
-	public void setBlock ( IPosition pos, BaseEntity spawnedBlock ){
-		map.get(pos.getX()).get(pos.getZ()).set(pos.getY(),spawnedBlock);
+	
+	public BaseMap(){
+		int height;
+		int width;
+		height = 8;
+		width = 8;
+		this.map = new ArrayList<ArrayList<ICellule>>();
+		for(int i = 0; i < height; ++i){
+			this.map.add(new ArrayList<ICellule>());
+			for(int j = 0; j < width; ++j){
+				this.map.get(i).add(new BaseCellule());
+			}
+		}
 	}
 	
 	@Override
-	public void spawnAtPosition(BaseEntity spawnedEntity, IPosition pos) {
-		//TODO: Check if HP == 0
-		map.get(pos.getX()).get(pos.getZ()).set(pos.getY(),spawnedEntity);
-		
+	public ArrayList<ICellule> isEntityAdjacent(ICellule cellule){
+		//TODO test this method
+		//TODO simplify this method
+		boolean isContainsInMap;
+		int i;
+		isContainsInMap = false;
+		i = 0;
+		while(!isContainsInMap && i < this.map.size()){
+			isContainsInMap = this.map.get(i).contains(cellule);
+			i = i + 1;
+		}
+		i = i - 1;
+		ArrayList<ICellule> isEntityAdjacent = new ArrayList<ICellule>();
+		if(isContainsInMap){
+			int index = this.map.get(i).indexOf(cellule);
+			ICellule toAddIfNotEmpty;
+			if(i != 0){
+				toAddIfNotEmpty = this.getCellule(i - 1, index);
+				if(toAddIfNotEmpty.getEntity() != null){ isEntityAdjacent.add(toAddIfNotEmpty); }
+			}
+			if(i != this.getHeight()){
+				toAddIfNotEmpty = this.getCellule(i + 1, index);
+				if(toAddIfNotEmpty.getEntity() != null){ isEntityAdjacent.add(toAddIfNotEmpty); }
+			}
+			if(index != 0){
+				toAddIfNotEmpty = this.getCellule(i, index - 1);
+				if(toAddIfNotEmpty.getEntity() != null){ isEntityAdjacent.add(toAddIfNotEmpty); }
+			}
+			if(index != this.getWidth()){
+				toAddIfNotEmpty = this.getCellule(i, index + 1);
+				if(toAddIfNotEmpty.getEntity() != null){ isEntityAdjacent.add(toAddIfNotEmpty); }
+			}
+		}
+		return isEntityAdjacent;
+	}
+	
+	@Override
+	public int getWidth(){
+		return this.map.get(0).size();
+	}
+
+	@Override
+	public int getHeight(){
+		return this.map.size();
+	}
+
+	@Override
+	public ArrayList<ArrayList<ICellule>> getMap() {
+		return map;
+	}
+
+	@Override
+	public void setMap(ArrayList<ArrayList<ICellule>> map) {
+		this.map = map;
+	}
+
+	@Override
+	public void setCellule(ICellule cellule, int height, int width){
+		//TODO test this method
+		this.map.get(height).set(width, cellule);
+	}
+
+	@Override
+	public ICellule getCellule(int height, int width){
+		return this.map.get(height).get(width);
+	}
+	
+	@Override
+	public ICellule findEntity(IEntity entity){
+		boolean isContainsInMap;
+		int i;
+		int j;
+		ICellule res;
+		isContainsInMap = false;
+		i = 0;
+		j = 0;
+		res = null;
+		while(!isContainsInMap && i < this.map.size()){
+			j = 0;
+			while(!isContainsInMap && j < this.map.size()){
+				isContainsInMap = entity.equals(this.map.get(i).get(j).getEntity());
+				j = j + 1;
+			}
+			i = i + 1;
+		}
+		if(isContainsInMap){
+			res = this.map.get(i-1).get(j-1);
+		}
+		return res;
 	}
 }

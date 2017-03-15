@@ -1,4 +1,4 @@
-package game;
+package game.old;
 
 import framework.ExtensionDescr;
 

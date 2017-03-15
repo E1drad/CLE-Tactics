@@ -1,4 +1,4 @@
-package game;
+package game.old;
 
 public class Position implements IPosition {
 	int x;

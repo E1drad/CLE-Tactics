@@ -1,14 +1,10 @@
-package framework;
+package game.old;
 
 
 import java.util.List;
 
-import game.old.IEntity;
-import game.old.IEntityIdentifier;
-import game.old.IGame;
-import game.old.IMap;
-import game.old.IMonitor;
-import game.old.IPosition;
+import framework.ExtensionDescr;
+import framework.ExtensionLoader;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,7 +21,7 @@ public class Main {
         IGame game = (IGame) loader.loadDefaultExtension(IGame.class);
 
         for(String ext : monitor.isLoad(loader.getExtensions_ar())){
-            System.out.println("Extension : "+ext+" chargee avec succes.");
+            System.out.println("Extension : "+ext+" chargée avec succès.");
         }
     }
 

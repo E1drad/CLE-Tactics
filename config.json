@@ -2,44 +2,44 @@
   "extension": [
     {
       "name" : "EntityIdentifier",
-      "class_name" : "game.EntityIdentifier",
-      "interface" : "game.IEntityIdentifier",
+      "class_name" : "game.old.EntityIdentifier",
+      "interface" : "game.old.IEntityIdentifier",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "Position",
-      "class_name" : "game.Position",
-      "interface" : "game.IPosition",
+      "class_name" : "game.old.Position",
+      "interface" : "game.old.IPosition",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     
     {
       "name" : "Entity",
-      "class_name" : "game.BaseEntity",
-      "interface" : "game.IEntity",
+      "class_name" : "game.old.BaseEntity",
+      "interface" : "game.old.IEntity",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "Map",
-      "class_name" : "game.BaseMap",
-      "interface" : "game.IMap",
+      "class_name" : "game.old.BaseMap",
+      "interface" : "game.old.IMap",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "CLE-Tactics",
-      "class_name" : "game.BaseGame",
-      "interface" : "game.IGame",
+      "class_name" : "game.old.BaseGame",
+      "interface" : "game.old.IGame",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "Monitoring",
-      "class_name" : "game.Monitor",
-      "interface" : "game.IMonitor",
+      "class_name" : "game.old.Monitor",
+      "interface" : "game.old.IMonitor",
       "description" : "Module de supervision",
       "autorun" : true
     },

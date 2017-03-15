@@ -1,114 +1,95 @@
 package game;
 
-public class BaseEntity implements IEntity{
 
-	public BaseEntity(int hp, int maxHp, IEntityIdentifier id,
-			int movementSpeed, int team, boolean capableOfUsingSkills,
-			boolean capableOfUsingNormalAttack, boolean capableOfSkippingTurn,
-			boolean capableOfMoving, boolean automatic) {
-		super();
-		this.hp = hp;
-		this.maxHp = maxHp;
-		this.id = id;
-		this.movementSpeed = movementSpeed;
-		this.team = team;
-		this.capableOfUsingSkills = capableOfUsingSkills;
-		this.capableOfUsingNormalAttack = capableOfUsingNormalAttack;
-		this.capableOfSkippingTurn = capableOfSkippingTurn;
-		this.capableOfMoving = capableOfMoving;
-		this.automatic = automatic;
-	}
-	public BaseEntity() {
-		super();
-		this.hp = 0;
-		this.maxHp = 0;
-		this.id = new EntityIdentifier(0);
-		this.movementSpeed = 0;
-		this.team = 0;
-		this.capableOfUsingSkills = false;
-		this.capableOfUsingNormalAttack = false;
-		this.capableOfSkippingTurn = false;
-		this.capableOfMoving = false;
-		this.automatic = false;
-	}
-	private int hp;
-	private int maxHp;
-	private IEntityIdentifier id;
-	private IPosition pos;
-	private int movementSpeed;
+public class BaseEntity implements IEntity {
+	private IAbilityScore abilityScore;
+	private int identifier;
 	private int team;
-	private boolean capableOfUsingSkills;
-	private boolean capableOfUsingNormalAttack;
-	private boolean capableOfSkippingTurn;
-	private boolean capableOfMoving;
-	private boolean automatic;
-	public int getHp() {
-		return hp;
+	private IArtificialIntelligence artificialIntelligence;
+
+	public BaseEntity(IAbilityScore abilityScore, int identifier, 
+			int team, IArtificialIntelligence artificialIntelligence) {
+		this.abilityScore = abilityScore;
+		this.identifier = identifier;
+		this.team = team;
+		this.artificialIntelligence = artificialIntelligence;
 	}
-	public void setHp(int hp) {
-		this.hp = hp;
+	
+	public BaseEntity() {
+		this.abilityScore = new BaseAbilityScore();
+		this.identifier = 0;
+		this.team = 0;
+		this.artificialIntelligence = null;
 	}
-	public int getMaxHp() {
-		return maxHp;
+
+	@Override
+	public void action(IMap map) {
+		if(this.artificialIntelligence != null){
+			this.artificialIntelligence.action(this, map,
+					this.abilityScore.getMovementSpeed(),
+					this.abilityScore.getAttackValue());
+		}else{
+			IGameMenu gameMenu = new BaseGameMenu();
+			gameMenu.actionMenu(this, map,
+					this.abilityScore.getMovementSpeed(),
+					this.abilityScore.getAttackValue());
+		}
 	}
-	public void setMaxHp(int maxHp) {
-		this.maxHp = maxHp;
+	
+	@Override
+	public IAbilityScore getAbilityScore() {
+		return abilityScore;
 	}
-	public IEntityIdentifier getId() {
-		return id;
+
+	@Override
+	public void setAbilityScore(IAbilityScore abilityScore) {
+		this.abilityScore = abilityScore;
 	}
-	public void setId(IEntityIdentifier id) {
-		this.id = id;
+
+	@Override
+	public int getIdentifier() {
+		return identifier;
 	}
-	public IPosition getPos() {
-		return pos;
+
+	@Override
+	public void setIdentifier(int identifier) {
+		this.identifier = identifier;
 	}
-	public void setPos(IPosition pos) {
-		this.pos = pos;
-	}
-	public int getMovementSpeed() {
-		return movementSpeed;
-	}
-	public void setMovementSpeed(int movementSpeed) {
-		this.movementSpeed = movementSpeed;
-	}
+
+	@Override
 	public int getTeam() {
 		return team;
 	}
+
+	@Override
 	public void setTeam(int team) {
 		this.team = team;
 	}
-	public boolean isCapableOfUsingSkills() {
-		return capableOfUsingSkills;
+
+	@Override
+	public IArtificialIntelligence getIntelligence() {
+		return artificialIntelligence;
 	}
-	public void setCapableOfUsingSkills(boolean capableOfUsingSkills) {
-		this.capableOfUsingSkills = capableOfUsingSkills;
+
+	@Override
+	public void setIntelligence(IArtificialIntelligence artificialIntelligence) {
+		this.artificialIntelligence = artificialIntelligence;
 	}
-	public boolean isCapableOfUsingNormalAttack() {
-		return capableOfUsingNormalAttack;
-	}
-	public void setCapableOfUsingNormalAttack(boolean capableOfUsingNormalAttack) {
-		this.capableOfUsingNormalAttack = capableOfUsingNormalAttack;
-	}
-	public boolean isCapableOfSkippingTurn() {
-		return capableOfSkippingTurn;
-	}
-	public void setCapableOfSkippingTurn(boolean capableOfSkippingTurn) {
-		this.capableOfSkippingTurn = capableOfSkippingTurn;
-	}
-	public boolean isCapableOfMoving() {
-		return capableOfMoving;
-	}
-	public void setCapableOfMoving(boolean capableOfMoving) {
-		this.capableOfMoving = capableOfMoving;
-	}
-	public boolean isAutomatic() {
-		return automatic;
-	}
-	public void setAutomatic(boolean automatic) {
-		this.automatic = automatic;
+
+	@Override
+	public void modHitPoint(int attackValue) {
+		this.abilityScore.setHitPoint(this.abilityScore.getHitPoint() + attackValue);
+		if(attackValue <= 0){
+			System.out.println(this.identifier + " a perdu " + attackValue + " points de vie !");
+		}else{
+			System.out.println(this.identifier + " a gagne " + attackValue + " points de vie !");
+		}
+		System.out.println("Il reste a " + this.identifier + " " + this.abilityScore.getHitPoint() + " points de vie.");
 	}
 	
-	
+	@Override
+	public boolean isAlive(){
+		return this.abilityScore.getHitPoint() > 0;
+	}
 	
 }
