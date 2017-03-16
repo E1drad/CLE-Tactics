@@ -3,6 +3,11 @@ package game;
 import java.util.ArrayList;
 
 import game.BaseMap;
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGame;
+import game.publicInterfaces.IMap;
+import game.publicInterfaces.IMapDisplay;
 
 public class BaseGame implements IGame {
 	private int turn;

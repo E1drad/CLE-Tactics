@@ -1,5 +1,6 @@
 package game;
 
+import game.publicInterfaces.IAbilityScore;
 
 public class BaseAbilityScore implements IAbilityScore {
 	private int hitPoint;

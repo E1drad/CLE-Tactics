@@ -1,4 +1,4 @@
-package game;
+package game.publicInterfaces;
 
 import java.util.ArrayList;
 

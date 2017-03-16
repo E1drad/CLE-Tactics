@@ -1,5 +1,8 @@
 package game;
 
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+
 public class BaseCellule implements ICellule {
 	private int mouvementCost;
 	private IEntity entity;
