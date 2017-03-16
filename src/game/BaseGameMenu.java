@@ -26,7 +26,9 @@ public class BaseGameMenu implements IGameMenu {
 					+ " 1/ Pour attaquer\n\t"
 					+ " 2/ Pour se deplacer\n\t"
 					+ " 3/ Pour changer de posture");
+			
 			choice = scanner.nextInt();
+			
 			if (choice > 0 && choice < 4){
 				switch (choice){
 				case 1:
@@ -51,7 +53,7 @@ public class BaseGameMenu implements IGameMenu {
 				System.out.println("Veuiller enter un nombre compris entre 1 et 3");
 			}
 		}
-		scanner.close();
+		//scanner.close();
 		System.out.println("Fin du tour de " + entity.getIdentifier() + " !");
 	}
 
@@ -76,7 +78,7 @@ public class BaseGameMenu implements IGameMenu {
 					System.out.println("un nombre entre 1 et " + (adjacentEntity.size()) );
 				}
 			}
-			scanner.close();
+			//scanner.close();
 		}
 	}
 
