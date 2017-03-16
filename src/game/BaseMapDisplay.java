@@ -1,5 +1,8 @@
 package game;
 
+import game.publicInterfaces.IMap;
+import game.publicInterfaces.IMapDisplay;
+
 public class BaseMapDisplay implements IMapDisplay {
 
 	public BaseMapDisplay(){

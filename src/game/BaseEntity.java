@@ -1,5 +1,10 @@
 package game;
 
+import game.publicInterfaces.IAbilityScore;
+import game.publicInterfaces.IArtificialIntelligence;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGameMenu;
+import game.publicInterfaces.IMap;
 
 public class BaseEntity implements IEntity {
 	private IAbilityScore abilityScore;
@@ -84,7 +89,8 @@ public class BaseEntity implements IEntity {
 		}else{
 			System.out.println(this.identifier + " a gagne " + attackValue + " points de vie !");
 		}
-		System.out.println("Il reste a " + this.identifier + " " + this.abilityScore.getHitPoint() + " points de vie.");
+		if (isAlive()) System.out.println("Il reste a " + this.identifier + " " + this.abilityScore.getHitPoint() + " points de vie.");
+		else System.out.println("" + this.identifier + " est mort.");
 	}
 	
 	@Override

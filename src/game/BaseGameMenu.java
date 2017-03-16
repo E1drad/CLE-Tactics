@@ -1,10 +1,20 @@
 package game;
 
+<<<<<<< HEAD
+=======
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGameMenu;
+import game.publicInterfaces.IMap;
+
+>>>>>>> 4d21d2e99c49f998305a165ad2f7da058fded6e2
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import game.publicInterfaces.*;
 
 public class BaseGameMenu implements IGameMenu {
 	

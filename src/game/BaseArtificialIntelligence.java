@@ -2,6 +2,11 @@ package game;
 
 import java.util.ArrayList;
 
+import game.publicInterfaces.IArtificialIntelligence;
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IMap;
+
 public class BaseArtificialIntelligence implements IArtificialIntelligence {
 
 	@Override

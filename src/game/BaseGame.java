@@ -3,6 +3,11 @@ package game;
 import java.util.ArrayList;
 
 import game.BaseMap;
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGame;
+import game.publicInterfaces.IMap;
+import game.publicInterfaces.IMapDisplay;
 
 public class BaseGame implements IGame {
 	private int turn;
@@ -26,16 +31,22 @@ public class BaseGame implements IGame {
 
 	@Override
 	public void play(){
-		int i;
+		int i, j;
 		
 		this.init();
 		
 		while(this.characters.size() > 1){
-			i = 0;
+			i = j = 0;
 			while(i < this.characters.size()){
 				//TODO death is not handle
 				this.mapDisplay.display(this.map);
 				this.characters.get(i).action(this.map);
+				while(j < this.characters.size()){
+					if (!this.characters.get(j).isAlive()) {
+						this.characters.remove(this.characters.get(j));
+					}
+					j++;
+				}
 				i = i + 1;
 				
 			}
