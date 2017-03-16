@@ -31,14 +31,20 @@ public class BaseGame implements IGame {
 
 	@Override
 	public void play(){
-		int i;
+		int i, j;
 		
 		while(this.characters.size() > 1){
-			i = 0;
+			i = j = 0;
 			while(i < this.characters.size()){
 				//TODO death is not handle
 				this.mapDisplay.display(this.map);
 				this.characters.get(i).action(this.map);
+				while(j < this.characters.size()){
+					if (!this.characters.get(j).isAlive()) {
+						this.characters.remove(this.characters.get(j));
+					}
+					j++;
+				}
 				i = i + 1;
 				
 			}

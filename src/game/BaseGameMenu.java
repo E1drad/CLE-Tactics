@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import game.publicInterfaces.*;
+
 public class BaseGameMenu implements IGameMenu {
 	
 	public BaseGameMenu(){
