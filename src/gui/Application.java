@@ -1,11 +1,9 @@
 package gui;
 
 import game.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import game.publicInterfaces.IGame;
+import game.publicInterfaces.IGameMenu;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 

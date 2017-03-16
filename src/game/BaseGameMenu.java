@@ -1,5 +1,10 @@
 package game;
 
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGameMenu;
+import game.publicInterfaces.IMap;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
