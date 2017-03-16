@@ -3,6 +3,11 @@ package game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGameMenu;
+import game.publicInterfaces.IMap;
+
 public class BaseGameMenu implements IGameMenu {
 	
 	public BaseGameMenu(){

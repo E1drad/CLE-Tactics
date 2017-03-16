@@ -2,6 +2,10 @@ package game;
 
 import java.util.ArrayList;
 
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IMap;
+
 /**
  * @brief A rectangular map.
  * @author Charles BEGAUDEAU

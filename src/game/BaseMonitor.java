@@ -1,6 +1,7 @@
 package game;
 
 import framework.ExtensionDescr;
+import game.publicInterfaces.IMonitor;
 
 import java.util.ArrayList;
 import java.util.List;

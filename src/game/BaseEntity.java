@@ -1,5 +1,10 @@
 package game;
 
+import game.publicInterfaces.IAbilityScore;
+import game.publicInterfaces.IArtificialIntelligence;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGameMenu;
+import game.publicInterfaces.IMap;
 
 public class BaseEntity implements IEntity {
 	private IAbilityScore abilityScore;
