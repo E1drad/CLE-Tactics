@@ -28,6 +28,8 @@ public class BaseGame implements IGame {
 	public void play(){
 		int i;
 		
+		this.init();
+		
 		while(this.characters.size() > 1){
 			i = 0;
 			while(i < this.characters.size()){
@@ -77,5 +79,18 @@ public class BaseGame implements IGame {
 		ICellule cellule = this.map.getCellule(height, width);
 		cellule.setEntity(entity);
 		this.map.setCellule(cellule, height, width);
+	}
+	
+	private void init(){
+		System.out.println("Initializing.");
+		BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 10, 0, null);
+		System.out.println("entity1 has been created.");
+		BaseEntity entity2 = new BaseEntity(new BaseAbilityScore(), 20, 1, new BaseArtificialIntelligence());
+		System.out.println("entity2 has been created.");
+		this.addCharactersOnMap(entity1, 0, 0);
+		System.out.println("entity1 has been added on map.");
+		this.addCharactersOnMap(entity2, 1, 0);
+		System.out.println("entity2 has been added on map.");
+	
 	}
 }
