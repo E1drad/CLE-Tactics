@@ -1,12 +1,10 @@
 package game;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import game.publicInterfaces.ICellule;
-import game.publicInterfaces.IEntity;
-import game.publicInterfaces.IGameMenu;
-import game.publicInterfaces.IMap;
 
 public class BaseGameMenu implements IGameMenu {
 	
@@ -17,9 +15,7 @@ public class BaseGameMenu implements IGameMenu {
 	@Override
 	public void actionMenu(IEntity entity, IMap map, int movementSpeed, int attackValue) {
 		int choice;
-		choice = 0;
 		boolean test = false;
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Debut du tour de " + entity.getIdentifier());
 		while((!test)){
 			System.out.println("Qu'est que vous allez faire ?\n\t"
@@ -27,9 +23,11 @@ public class BaseGameMenu implements IGameMenu {
 					+ " 2/ Pour se deplacer\n\t"
 					+ " 3/ Pour changer de posture");
 			
-			choice = scanner.nextInt();
 			
-			if (choice > 0 && choice < 4){
+			
+		    choice = getInt();
+		    
+			
 				switch (choice){
 				case 1:
 					this.attaquer(entity, map, attackValue);
@@ -48,28 +46,28 @@ public class BaseGameMenu implements IGameMenu {
 				default :
 					System.out.println("entre un nombre 1 et 3 merci !");
 				}
-			}else{
-				choice = 0;
-				System.out.println("Veuiller enter un nombre compris entre 1 et 3");
-			}
+			
 		}
-		//scanner.close();
 		System.out.println("Fin du tour de " + entity.getIdentifier() + " !");
 	}
-
+	
+	
 	@Override
 	public void attaquer(IEntity entity, IMap map, int attackValue) {
 		ICellule positionEntity = map.findEntity(entity);
 		ArrayList<ICellule> adjacentEntity = map.isEntityAdjacent(positionEntity);
 		if( !adjacentEntity.isEmpty()){
 			int choice;
-			choice = 0;
 			boolean test = false;
-			Scanner scanner = new Scanner(System.in);
 			while((!test)){
 				System.out.println("Qui voulez vous attaquer ?\n\t");
 				System.out.println("Nombre de cible : " + adjacentEntity.size());
-				choice = scanner.nextInt();
+				
+				
+				choice = getInt();
+				
+				
+			    
 				if(choice >= 1 && choice <= adjacentEntity.size()){
 					adjacentEntity.get(choice - 1).getEntity().modHitPoint(
 							-1 * entity.getAbilityScore().getAttackValue());
@@ -78,10 +76,36 @@ public class BaseGameMenu implements IGameMenu {
 					System.out.println("un nombre entre 1 et " + (adjacentEntity.size()) );
 				}
 			}
-			//scanner.close();
 		}
 	}
 
+	private int getInt(){
+		int buffer=0;
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String s;
+		try {
+			s = br.readLine();
+		} catch (IOException e) {
+			System.out.println("Exception");
+			return 0;
+		}
+
+		// create a new scanner with the specified String Object
+		Scanner scanner = new Scanner(s);
+
+		if (scanner.hasNextInt()) {
+		// check if the scanner's next token is an int
+		buffer=scanner.nextInt();
+
+		// close the scanner
+		scanner.close();
+		}
+		
+		
+		return buffer;
+	}
+	
 	@Override
 	public int moveTo(IEntity baseEntity, IMap map, int movementSpeed) {
 		
