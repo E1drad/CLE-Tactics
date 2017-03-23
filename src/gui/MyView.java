@@ -10,14 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-/**
- * Created by francois on 16/03/17.
- */
+
 public class MyView implements IGraphics{
 
-    GridPane parent;
-    IGame game;
-    IGameMenu gameMenu;
+    private GridPane parent;
+    private IGame game;
+    private IGameMenu gameMenu;
 
     public MyView(IGame game, IGameMenu gameMenu){
         parent = new GridPane();

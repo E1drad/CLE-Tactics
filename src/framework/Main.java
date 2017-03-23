@@ -1,20 +1,11 @@
 package framework;
 
 
+import game.publicInterfaces.*;
+
 import java.util.List;
 
-import game.BaseAbilityScore;
-import game.BaseArtificialIntelligence;
-import game.BaseEntity;
-import game.IAbilityScore;
-import game.IArtificialIntelligence;
-import game.ICellule;
-import game.IEntity;
-import game.IGame;
-import game.IGameMenu;
-import game.IMap;
-import game.IMapDisplay;
-import game.IMonitor;
+
 
 public class Main {
     public static void main(String[] args) {
