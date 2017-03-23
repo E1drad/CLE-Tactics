@@ -124,7 +124,6 @@ public class BaseMap implements IMap {
 
 	@Override
 	public void setCellule(ICellule cellule, int height, int width){
-		//TODO test this method
 		this.map.get(height).set(width, cellule);
 	}
 

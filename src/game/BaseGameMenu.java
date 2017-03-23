@@ -23,31 +23,27 @@ public class BaseGameMenu implements IGameMenu {
 			System.out.println("Qu'est que vous allez faire ?\n\t"
 					+ " 1/ Pour attaquer\n\t"
 					+ " 2/ Pour se deplacer\n\t"
-					+ " 3/ Pour changer de posture");
+					+ " 3/ Pour passer son tour\n\t");
 			
 		    choice = getInt();
 
-				switch (choice){
-				case 1:
-					this.attaquer(entity, map, attackValue);
-					test = true;
-					break;
-				case 2:
-					movementSpeed = this.moveTo(entity, map, movementSpeed);
-					if(movementSpeed == 0){
-						test = true;
-					}
-					break;
-				case 3:
-
-					test = false;
-					break;
-				default :
+			if (choice == 1){
+				this.attaquer(entity, map, attackValue);
+				test = true;
+			}else if(choice == 2 && movementSpeed > 0){
+				movementSpeed = this.moveTo(entity, map, movementSpeed);
+			}else if(choice == 3){
+				test = true;
+			}else{
+				if(movementSpeed > 0){
 					System.out.println("entre un nombre 1 et 3 merci !");
+				}else{
+					System.out.println("entre 1 ou 3 merci !");
 				}
+			}
 			
 		}
-		System.out.println("Fin du jeu au tour numero " + entity.getIdentifier() + " !");
+		System.out.println("Fin du jeu au tour de " + entity.getName() + " !");
 	}
 	
 	
@@ -91,20 +87,19 @@ public class BaseGameMenu implements IGameMenu {
 		Scanner scanner = new Scanner(s);
 
 		if (scanner.hasNextInt()) {
-		// check if the scanner's next token is an int
-		buffer=scanner.nextInt();
-
-		// close the scanner
-		scanner.close();
+			// check if the scanner's next token is an int
+			buffer=scanner.nextInt();
+	
+			// close the scanner
+			scanner.close();
 		}
-		
-		
+
 		return buffer;
 	}
 	
 	@Override
 	public int moveTo(IEntity baseEntity, IMap map, int movementSpeed) {
-		
+		//System.out.println("x : " + baseEntity.getPosition(map).get(0) + " ; y : " + baseEntity.getPosition(map).get(1));
 		return 0;
 	}
 }

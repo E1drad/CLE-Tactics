@@ -1,5 +1,7 @@
 package game.publicInterfaces;
 
+import java.util.ArrayList;
+
 public interface IEntity {
 
 	void action(IMap map);
@@ -27,5 +29,7 @@ public interface IEntity {
 	String getName();
 	
 	void setName(String name);
+
+	ArrayList<Integer> getPosition(IMap map);
 
 }

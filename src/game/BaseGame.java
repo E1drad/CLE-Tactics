@@ -36,17 +36,20 @@ public class BaseGame implements IGame {
 		this.init();
 		
 		while(this.characters.size() > 1){
-			i = j = 0;
+			i = 0;
 			while(i < this.characters.size()){
 				//TODO death is not handle
 				this.mapDisplay.display(this.map);
 				this.characters.get(i).action(this.map);
+				j = 0;
 				while(j < this.characters.size()){
 					if (!this.characters.get(j).isAlive()) {
+						System.out.println(this.characters.get(j).getName() + "REMOVE");
 						this.characters.remove(this.characters.get(j));
 					}
-					j++;
+					j = j + 1;
 				}
+				
 				i = i + 1;
 				
 			}

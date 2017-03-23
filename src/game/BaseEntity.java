@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 import game.publicInterfaces.IAbilityScore;
 import game.publicInterfaces.IArtificialIntelligence;
 import game.publicInterfaces.IEntity;
@@ -101,13 +103,40 @@ public class BaseEntity implements IEntity {
 		}else{
 			System.out.println(this.name + " a gagne " + attackValue + " points de vie !");
 		}
-		if (isAlive()) System.out.println("Il reste a " + this.name + " " + this.abilityScore.getHitPoint() + " points de vie.");
-		else System.out.println("" + this.name + " est mort.");
+		if(isAlive()){
+			System.out.println("Il reste a " + this.name + " " + this.abilityScore.getHitPoint() + " points de vie.");
+		}else{
+			System.out.println("" + this.name + " est mort.");
+		}
 	}
 	
 	@Override
 	public boolean isAlive(){
 		return this.abilityScore.getHitPoint() > 0;
+	}
+	
+	@Override
+	public ArrayList<Integer> getPosition(IMap map){
+		ArrayList<Integer> position = new ArrayList<Integer>();
+		int i;
+		int j;
+		boolean find;
+		i = 0;
+		find = false;
+		while( i < map.getMap().size() && !find){
+			j = 0;
+			while(j < map.getMap().get(i).size() && !find){
+				if( this.equals(map.getMap().get(i).get(j).getEntity()) ){
+					position.add(i);
+					position.add(j);
+					find = true;
+				}
+				j = j + 1;
+			}
+			i = i + 1;
+		}
+		
+		return position;
 	}
 	
 }
