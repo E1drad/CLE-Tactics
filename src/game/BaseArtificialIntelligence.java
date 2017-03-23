@@ -11,9 +11,9 @@ public class BaseArtificialIntelligence implements IArtificialIntelligence {
 
 	@Override
 	public void action(IEntity entity, IMap map, int movementSpeed, int attackValue) {
-		System.out.println("Debut du tour de " + entity.getIdentifier());
+		System.out.println("Debut du tour de " + entity.getName());
 		this.attaquer(entity, map, attackValue);
-		System.out.println("Fin du tour de " + entity.getIdentifier() + " !");
+		System.out.println("Fin du tour de " + entity.getName() + " !");
 	}
 	
 	@Override

@@ -17,7 +17,7 @@ public class BaseMapDisplay implements IMapDisplay {
 				if(map.getCellule(i, j).getEntity() == null){
 					str += "_" + "\t";
 				}else{
-					str += map.getCellule(i, j).getEntity().getIdentifier() + "\t";
+					str += map.getCellule(i, j).getEntity().getName() + "\t";
 				}
 			}
 			System.out.println(str + "|");

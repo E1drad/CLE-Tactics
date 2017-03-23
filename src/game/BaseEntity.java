@@ -9,13 +9,15 @@ import game.publicInterfaces.IMap;
 public class BaseEntity implements IEntity {
 	private IAbilityScore abilityScore;
 	private int identifier;
+	private String name;
 	private int team;
 	private IArtificialIntelligence artificialIntelligence;
 
-	public BaseEntity(IAbilityScore abilityScore, int identifier, 
+	public BaseEntity(IAbilityScore abilityScore, int identifier, String name,
 			int team, IArtificialIntelligence artificialIntelligence) {
 		this.abilityScore = abilityScore;
 		this.identifier = identifier;
+		this.name = name;
 		this.team = team;
 		this.artificialIntelligence = artificialIntelligence;
 	}
@@ -80,17 +82,27 @@ public class BaseEntity implements IEntity {
 	public void setIntelligence(IArtificialIntelligence artificialIntelligence) {
 		this.artificialIntelligence = artificialIntelligence;
 	}
-
+	
+	@Override
+	public String getName(){
+		return this.name;
+	}
+	
+	@Override
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	@Override
 	public void modHitPoint(int attackValue) {
 		this.abilityScore.setHitPoint(this.abilityScore.getHitPoint() + attackValue);
 		if(attackValue <= 0){
-			System.out.println(this.identifier + " a perdu " + attackValue + " points de vie !");
+			System.out.println(this.name + " a perdu " + attackValue + " points de vie !");
 		}else{
-			System.out.println(this.identifier + " a gagne " + attackValue + " points de vie !");
+			System.out.println(this.name + " a gagne " + attackValue + " points de vie !");
 		}
-		if (isAlive()) System.out.println("Il reste a " + this.identifier + " " + this.abilityScore.getHitPoint() + " points de vie.");
-		else System.out.println("" + this.identifier + " est mort.");
+		if (isAlive()) System.out.println("Il reste a " + this.name + " " + this.abilityScore.getHitPoint() + " points de vie.");
+		else System.out.println("" + this.name + " est mort.");
 	}
 	
 	@Override

@@ -24,4 +24,8 @@ public interface IEntity {
 
 	boolean isAlive();
 
+	String getName();
+	
+	void setName(String name);
+
 }

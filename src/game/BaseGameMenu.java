@@ -18,18 +18,15 @@ public class BaseGameMenu implements IGameMenu {
 	public void actionMenu(IEntity entity, IMap map, int movementSpeed, int attackValue) {
 		int choice;
 		boolean test = false;
-		System.out.println("Debut du tour de " + entity.getIdentifier());
+		System.out.println("Debut du tour de " + entity.getName());
 		while((!test)){
 			System.out.println("Qu'est que vous allez faire ?\n\t"
 					+ " 1/ Pour attaquer\n\t"
 					+ " 2/ Pour se deplacer\n\t"
 					+ " 3/ Pour changer de posture");
 			
-			
-			
 		    choice = getInt();
-		    
-			
+
 				switch (choice){
 				case 1:
 					this.attaquer(entity, map, attackValue);
@@ -50,7 +47,7 @@ public class BaseGameMenu implements IGameMenu {
 				}
 			
 		}
-		System.out.println("Fin du tour de " + entity.getIdentifier() + " !");
+		System.out.println("Fin du jeu au tour numero " + entity.getIdentifier() + " !");
 	}
 	
 	
@@ -64,12 +61,9 @@ public class BaseGameMenu implements IGameMenu {
 			while((!test)){
 				System.out.println("Qui voulez vous attaquer ?\n\t");
 				System.out.println("Nombre de cible : " + adjacentEntity.size());
-				
-				
+								
 				choice = getInt();
 				
-				
-			    
 				if(choice >= 1 && choice <= adjacentEntity.size()){
 					adjacentEntity.get(choice - 1).getEntity().modHitPoint(
 							-1 * entity.getAbilityScore().getAttackValue());

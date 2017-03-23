@@ -94,9 +94,9 @@ public class BaseGame implements IGame {
 	
 	private void init(){
 		System.out.println("Initializing.");
-		BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 10, 0, null);
+		BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 0, "Link", 0, null);
 		System.out.println("entity1 has been created.");
-		BaseEntity entity2 = new BaseEntity(new BaseAbilityScore(), 20, 1, new BaseArtificialIntelligence());
+		BaseEntity entity2 = new BaseEntity(new BaseAbilityScore(), 1, "Ganon", 1, new BaseArtificialIntelligence());
 		System.out.println("entity2 has been created.");
 		this.addCharactersOnMap(entity1, 0, 0);
 		System.out.println("entity1 has been added on map.");
