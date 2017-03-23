@@ -3,21 +3,21 @@
     {
       "name" : "Cellule",
       "class_name" : "game.BaseCellule",
-      "interface" : "game.ICellule",
+      "interface" : "game.publicInterfaces.ICellule",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
      {
       "name" : "ArtificialIntelligence",
       "class_name" : "game.BaseArtificialIntelligence",
-      "interface" : "game.IArtificialIntelligence",
+      "interface" : "game.publicInterfaces.IArtificialIntelligence",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "AbilityScore",
       "class_name" : "game.BaseAbilityScore",
-      "interface" : "game.IAbilityScore",
+      "interface" : "game.publicInterfaces.IAbilityScore",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
@@ -25,42 +25,42 @@
     {
       "name" : "Entity",
       "class_name" : "game.BaseEntity",
-      "interface" : "game.IEntity",
+      "interface" : "game.publicInterfaces.IEntity",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
      {
       "name" : "GameMenu",
       "class_name" : "game.BaseGameMenu",
-      "interface" : "game.IGameMenu",
+      "interface" : "game.publicInterfaces.IGameMenu",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "MapDisplay",
       "class_name" : "game.BaseMapDisplay",
-      "interface" : "game.IMapDisplay",
+      "interface" : "game.publicInterfaces.IMapDisplay",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "Map",
       "class_name" : "game.BaseMap",
-      "interface" : "game.IMap",
+      "interface" : "game.publicInterfaces.IMap",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "CLE-Tactics",
       "class_name" : "game.BaseGame",
-      "interface" : "game.IGame",
+      "interface" : "game.publicInterfaces.IGame",
       "description" : "Module de base du jeu",
       "autorun" : true
     },
     {
       "name" : "Monitoring",
       "class_name" : "game.BaseMonitor",
-      "interface" : "game.IMonitor",
+      "interface" : "game.publicInterfaces.IMonitor",
       "description" : "Module de supervision",
       "autorun" : true
     },
