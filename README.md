@@ -1,5 +1,5 @@
 # CLE-Tactics
-Le but de cette application est de permettre à l'utilisateur de charger des "plugins" via ce qu'on appelle le framework. Constultez le fichier Plateforme.md pour plus de détails.
+Le but de cette application est de permettre à l'utilisateur de charger des "plugins" via ce qu'on appelle le framework. Constultez le fichier PLATFORM.md pour plus de détails.
 
 ## Ajout d'une extension
 Incomming.
