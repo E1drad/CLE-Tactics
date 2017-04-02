@@ -68,6 +68,7 @@ public class ExtensionLoader {
             descr.setAutorun((boolean)e.get("autorun"));
             descr.setClass_name((String)e.get("class_name"));
             descr.setInterface_name((String)e.get("interface"));
+            descr.setPath((String)e.get("path"));
             descr.setDescription((String)e.get("description"));
             if(descr.isAutorun())
                 extensions_ar.add(descr);
@@ -84,7 +85,7 @@ public class ExtensionLoader {
     	
     	for(ExtensionDescr descr : extensions_ar) {
     		
-    		File f = new File(descr.getName());
+    		File f = new File(descr.getPath());
         	URL[] cp = {f.toURI().toURL()};
         	URLClassLoader urlcl = new URLClassLoader(cp);
         	Class<?> clazz = urlcl.loadClass(descr.getClass_name());

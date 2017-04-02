@@ -19,6 +19,11 @@ public class ExtensionDescr {
     private String interface_name;
 
     /**
+     * Le chemin vers le fichier compilé de la classe (.class)
+     */
+    private String path;
+    
+    /**
      * la description de l'extension
      */
     private String description;
@@ -57,6 +62,14 @@ public class ExtensionDescr {
 
     public void setInterface_name(String interface_name) {
         this.interface_name = interface_name;
+    }
+    
+    public String getPath() {
+    	return this.path;
+    }
+    
+    public void setPath(String thePath){
+    	this.path = thePath;
     }
 
     public String getDescription() {
