@@ -1,8 +1,13 @@
 package framework;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +75,25 @@ public class ExtensionLoader {
                 extensions.add(descr);
         }
     }
+    
+    /**
+     * @brief Charge les extensions peu importe leur provenance tant que le dossier où se situe les fichiers ".class" est renseigné.
+     * 
+     */
+    public void loadExt() throws ClassNotFoundException, InstantiationException, IllegalAccessException, MalformedURLException {
+    	
+    	for(ExtensionDescr descr : extensions_ar) {
+    		
+    		File f = new File(descr.getName());
+        	URL[] cp = {f.toURI().toURL()};
+        	URLClassLoader urlcl = new URLClassLoader(cp);
+        	Class<?> clazz = urlcl.loadClass(descr.getClass_name());
+    		
+        	
+        	Object res = clazz.newInstance();
+            
+    	}    	
+    }
 
     /**
      * Charge une extension autorun qui implémente l'interface spécifié
@@ -122,8 +146,6 @@ public class ExtensionLoader {
         }
     }
 
-
-
     public List<ExtensionDescr> getExtensions() {
         return extensions;
     }
@@ -131,31 +153,6 @@ public class ExtensionLoader {
     public List<ExtensionDescr> getExtensions_ar() {
         return extensions_ar;
     }
-
-    @Deprecated
-    public Object loadExtension(String filename) throws FileNotFoundException, IOException {
-/*
-        //SONObject prop = parseFile(filename);
-
-		try{
-		Class<?> cl= Class.forName((String)prop.get("class"));
-		Object res = cl.newInstance();
-		for(Object key : prop.keySet()){
-			if(!key.equals("class")){
-				Method setter= cl.getMethod("set"+key,String.class);
-				setter.invoke(res,prop.get(key));
-			}
-		}
-
-		return res;
-
-		}catch(Exception e){
-			System.out.println("An error has occured during the loading of the class.");
-		}*/
-		return null;
-
-
-	}
 
     /**
      * Parser de fichier config en json

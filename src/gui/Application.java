@@ -23,8 +23,8 @@ public class Application extends javafx.application.Application {
         IGame game = new BaseGame();
         IGameMenu gameMenu = new GuiGameMenu();
 
-        BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 10, 0, null);
-        BaseEntity entity2 = new BaseEntity(new BaseAbilityScore(), 20, 1, new BaseArtificialIntelligence());
+        BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 10, "Link", 0, null);
+        BaseEntity entity2 = new BaseEntity(new BaseAbilityScore(), 20, "Paf", 1, new BaseArtificialIntelligence());
         game.addCharactersOnMap(entity1, 0, 0);
         game.addCharactersOnMap(entity2, 1, 0);
 
