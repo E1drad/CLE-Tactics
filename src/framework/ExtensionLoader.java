@@ -89,9 +89,9 @@ public class ExtensionLoader {
         	URL[] cp = {f.toURI().toURL()};
         	URLClassLoader urlcl = new URLClassLoader(cp);
         	Class<?> clazz = urlcl.loadClass(descr.getClass_name());
-    		
-        	
+    
         	Object res = clazz.newInstance();
+        	descr.setRunning(true);
             
     	}    	
     }
