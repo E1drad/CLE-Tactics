@@ -143,6 +143,47 @@ public class GuiGame  implements IGame{
                     }
                 });
             }
+            else if(action.equals("moveLeft")){
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //characters.get(turn).moveLeft();
+                    }
+                });
+            }
+            else if(action.equals("moveRight")){
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //characters.get(turn).moveRight();
+                    }
+                });
+            }
+            else if(action.equals("moveUp")){
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //characters.get(turn).moveUp();
+                    }
+                });
+            }
+            else if(action.equals("moveDown")){
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //characters.get(turn).moveDown();
+                    }
+                });
+            }
+            else if(action.equals("skipTurn")){
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        characters.get(turn).endTurn();
+                        System.out.println("SkipTurn");
+                    }
+                });
+            }
         }
         command_panel.revalidate();
     }
