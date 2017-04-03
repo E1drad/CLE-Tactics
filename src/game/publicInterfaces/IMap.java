@@ -17,7 +17,7 @@ public interface IMap extends Plugin {
 
 	ICellule getCellule(int height, int width);
 
-	ArrayList<ICellule> isEntityAdjacent(ICellule cellule);
+	ArrayList<ICellule> getAdjacentEntities(ICellule cellule);
 
 	ICellule findEntity(IEntity entity);
 

@@ -20,7 +20,7 @@ public class BaseArtificialIntelligence implements IArtificialIntelligence {
 	@Override
 	public void attaquer(IEntity entity, IMap map, int attackValue) {
 		ICellule positionEntity = map.findEntity(entity);
-		ArrayList<ICellule> adjacentEntity = map.isEntityAdjacent(positionEntity);
+		ArrayList<ICellule> adjacentEntity = map.getAdjacentEntities(positionEntity);
 		if( !adjacentEntity.isEmpty()){
 			adjacentEntity.get(0).getEntity().modHitPoint(
 					-1 * entity.getAbilityScore().getAttackValue());

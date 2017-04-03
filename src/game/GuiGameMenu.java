@@ -20,7 +20,7 @@ public class GuiGameMenu implements IGameMenu {
     public void attaquer(IEntity entity, IMap map, int attackValue) {
         System.out.println("attaquer");
         ICellule positionEntity = map.findEntity(entity);
-        ArrayList<ICellule> adjacentEntity = map.isEntityAdjacent(positionEntity);
+        ArrayList<ICellule> adjacentEntity = map.getAdjacentEntities(positionEntity);
         if( !adjacentEntity.isEmpty()){
             System.out.println("ennemi trouvé");
             adjacentEntity.get(0).getEntity().modHitPoint(

@@ -69,7 +69,7 @@ public class BaseMap implements IMap {
 	}
 	
 	@Override
-	public ArrayList<ICellule> isEntityAdjacent(ICellule cellule){
+	public ArrayList<ICellule> getAdjacentEntities(ICellule cellule){
 		//TODO test this method
 		//TODO simplify this method
 		boolean isContainsInMap;
@@ -137,23 +137,23 @@ public class BaseMap implements IMap {
 	
 	@Override
 	public ICellule findEntity(IEntity entity){
-		boolean isContainsInMap;
+		boolean isOnTheMap;
 		int i;
 		int j;
 		ICellule res;
-		isContainsInMap = false;
+		isOnTheMap = false;
 		i = 0;
 		j = 0;
 		res = null;
-		while(!isContainsInMap && i < this.map.size()){
+		while(!isOnTheMap && i < this.map.size()){
 			j = 0;
-			while(!isContainsInMap && j < this.map.size()){
-				isContainsInMap = entity.equals(this.map.get(i).get(j).getEntity());
+			while(!isOnTheMap && j < this.map.size()){
+				isOnTheMap = entity.equals(this.map.get(i).get(j).getEntity());
 				j = j + 1;
 			}
 			i = i + 1;
 		}
-		if(isContainsInMap){
+		if(isOnTheMap){
 			res = this.map.get(i-1).get(j-1);
 		}
 		return res;

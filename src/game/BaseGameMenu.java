@@ -78,7 +78,7 @@ public class BaseGameMenu implements IGameMenu {
 	@Override
 	public void attaquer(IEntity entity, IMap map, int attackValue) {
 		ICellule positionEntity = map.findEntity(entity);
-		ArrayList<ICellule> adjacentEntity = map.isEntityAdjacent(positionEntity);
+		ArrayList<ICellule> adjacentEntity = map.getAdjacentEntities(positionEntity);
 		if( !adjacentEntity.isEmpty()){
 			int choice;
 			boolean test = false;
