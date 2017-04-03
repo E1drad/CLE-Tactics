@@ -9,7 +9,6 @@ public class BaseAbilityScore implements IAbilityScore {
 	private int movementSpeed;
 	
 	public BaseAbilityScore(int hitPoint, int maxHitPoint, int movementSpeed, int attackValue) {
-		//TODO throws exception if HP < 0
 		this.hitPoint = hitPoint;
 		this.maxHitPoint = maxHitPoint;
 		this.movementSpeed = movementSpeed;
@@ -17,7 +16,6 @@ public class BaseAbilityScore implements IAbilityScore {
 	}
 	
 	public BaseAbilityScore(int maxHitPoint, int movementSpeed, int attackValue) {
-		//TODO throws exception if HP < 0
 		this.hitPoint = maxHitPoint;
 		this.maxHitPoint = maxHitPoint;
 		this.movementSpeed = movementSpeed;
