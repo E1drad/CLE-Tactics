@@ -5,28 +5,28 @@ import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
 
 public class BaseCellule implements ICellule {
-	private int mouvementCost;
+	private int movementCost;
 	private IEntity entity;
 
-	public BaseCellule(int mouvementCost, IEntity entity) {
-		this.mouvementCost = mouvementCost;
+	public BaseCellule(int movementCost, IEntity entity) {
+		this.movementCost = movementCost;
 		this.entity = entity;
 	}
 
 	public BaseCellule() {
 		this.loadDependencies();
-		this.mouvementCost = 1;
+		this.movementCost = 1;
 		this.entity = null;
 	}
 
 	@Override
 	public int getMouvementCost() {
-		return mouvementCost;
+		return movementCost;
 	}
 
 	@Override
-	public void setMouvementCost(int mouvementCost) {
-		this.mouvementCost = mouvementCost;
+	public void setMouvementCost(int movementCost) {
+		this.movementCost = movementCost;
 	}
 
 	@Override
@@ -51,6 +51,12 @@ public class BaseCellule implements ICellule {
 		if(entityInterface != null){
 	        entityInterface.loadDependencies();
 		}
+	}
+	
+	@Override
+	public void clearCell() {
+		this.entity = null;
+		return;
 	}
 
 }

@@ -15,11 +15,8 @@ public class BaseEntity implements IEntity {
 	private String name;
 	private int team;
 	private IArtificialIntelligence artificialIntelligence;
-	@SuppressWarnings("unused")
 	private int movesLeft;
-	@SuppressWarnings("unused")
 	private boolean alreadyAttackedThisTurn;
-	@SuppressWarnings("unused")
 	private boolean endedThisTurn;
 
 	public BaseEntity(IAbilityScore abilityScore, int identifier, String name,

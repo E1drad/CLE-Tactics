@@ -12,4 +12,6 @@ public interface ICellule extends Plugin {
 
 	void setEntity(IEntity entity);
 
+	void clearCell();
+
 }
