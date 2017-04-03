@@ -29,9 +29,25 @@ public class GuiGameMenu implements IGameMenu {
     }
 
     @Override
-    public int moveTo(IEntity baseEntity, IMap map, int movementSpeed) {
+    public int moveToRight(IEntity baseEntity, IMap map, int movementSpeed) {
         return 0;
     }
+
+    @Override
+    public int moveToLeft(IEntity baseEntity, IMap map, int movementSpeed) {
+        return 0;
+    }
+
+    @Override
+    public int moveToDown(IEntity baseEntity, IMap map, int movementSpeed) {
+        return 0;
+    }
+
+    @Override
+    public int moveToUp(IEntity baseEntity, IMap map, int movementSpeed) {
+        return 0;
+    }
+
 
     public void gauche(IEntity baseEntity, IMap map, int movementSpeed){
         System.out.println("gauche");
