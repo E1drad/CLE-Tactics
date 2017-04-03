@@ -1,9 +1,12 @@
 package game.publicInterfaces;
 
+
 import java.util.ArrayList;
 
 public interface IGame extends LaunchablePlugin {
-
+	
+	IGame getInstance();
+	
 	int getTurn();
 
 	void setTurn(int turn);

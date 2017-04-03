@@ -36,6 +36,7 @@ public class BaseEntity implements IEntity {
 
 	@Override
 	public void action(IMap map) {
+		//System.out.println("x : " + getPosition(map).get(0) + " ; y : " + getPosition(map).get(1));
 		if(this.artificialIntelligence != null){
 			this.artificialIntelligence.action(this, map,
 					this.abilityScore.getMovementSpeed(),
