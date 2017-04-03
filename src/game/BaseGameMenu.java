@@ -24,7 +24,6 @@ public class BaseGameMenu implements IGameMenu {
 		int direction;
 		boolean test = false;
 		System.out.println("Debut du tour de " + entity.getName());
-		System.out.println("Il vous reste " + movementSpeed + " point(s) de mouvement");
 		while((!test)){
 			System.out.println("Qu'est que vous allez faire ?\n\t"
 					+ " 1/ Pour attaquer\n\t"
@@ -37,6 +36,7 @@ public class BaseGameMenu implements IGameMenu {
 				this.attaquer(entity, map, attackValue);
 				test = true;
 			}else if(choice == 2 && movementSpeed > 0){
+				System.out.println("Il vous reste " + movementSpeed + " point(s) de mouvement");
 				System.out.println("Dans quelle direction ?\n\t"
 						+ " 1/ Droite\n\t"
 						+ " 2/ Gauche\n\t"

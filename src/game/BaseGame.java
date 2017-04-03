@@ -46,7 +46,6 @@ public class BaseGame implements IGame{
 				j = 0;
 				while(j < this.characters.size()){
 					if (!this.characters.get(j).isAlive()) {
-						System.out.println(this.characters.get(j).getName() + "REMOVE");
 						this.characters.remove(this.characters.get(j));
 					}
 					j = j + 1;

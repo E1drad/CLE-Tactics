@@ -14,9 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import game.publicInterfaces.IMap;
 import game.publicInterfaces.LaunchablePlugin;
-import game.publicInterfaces.Plugin;
 
 public class ExtensionLoader {
 
@@ -107,15 +105,11 @@ public class ExtensionLoader {
 			URLClassLoader urlcl = new URLClassLoader(cp);
         	Class<?> clazz = urlcl.loadClass(descr.getClass_name());
 
-        	Object res = clazz.newInstance();
+        	//Object res = clazz.newInstance();
         	this.mapClassInterface.put(descr.getInterface_name(), clazz);
             System.out.println("Chargement de la classe " + descr.getClass_name());
         	descr.setRunning(true);
-/*
-            if(res instanceof Plugin){
-                System.out.println("Chargement des dependances la classe " + descr.getClass_name());
-            	((Plugin) res).loadDependencies();
-            }*/
+
     	}    	
     }
 
@@ -219,8 +213,9 @@ public class ExtensionLoader {
 						Class<?> cl = Class.forName(descr.getClass_name());
 	                    Object res  = cl.newInstance();
 	                    if(res instanceof LaunchablePlugin){
-	                    	((LaunchablePlugin) res).launch();
-	                    	
+	                    	//((LaunchablePlugin) res).launch();
+	                    	LaunchablePluginThread thread = new LaunchablePluginThread(descr.getInterface_name());
+	                    	thread.start();
 	                    }
 					}
 				}
