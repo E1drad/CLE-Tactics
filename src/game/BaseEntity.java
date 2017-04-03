@@ -25,8 +25,10 @@ public class BaseEntity implements IEntity {
 		this.artificialIntelligence = artificialIntelligence;
 	}
 	
-	public BaseEntity() {
-		this.abilityScore = new BaseAbilityScore();
+	public BaseEntity() {	
+		this.loadDependencies();
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		this.abilityScore = (IAbilityScore) loader.newInstanceof("game.publicInterfaces.IAbilityScore");
 		this.identifier = 0;
 		this.team = 0;
 		this.artificialIntelligence = null;
@@ -144,7 +146,7 @@ public class BaseEntity implements IEntity {
 	public void loadDependencies() {
 		ExtensionLoader loader = ExtensionLoader.getInstance();
 		IGameMenu gameMenuInterface = (IGameMenu)loader.loadDefaultExtension(IGameMenu.class);
-		IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
+		//IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
 		IArtificialIntelligence artificialIntelligenceInterface = (IArtificialIntelligence) loader.loadDefaultExtension(IArtificialIntelligence.class);
 		IAbilityScore abilityScoreInterface = (IAbilityScore) loader.loadDefaultExtension(IAbilityScore.class);
 		if(abilityScoreInterface != null){
@@ -152,10 +154,10 @@ public class BaseEntity implements IEntity {
 		}
 		if(artificialIntelligenceInterface != null){
 			artificialIntelligenceInterface.loadDependencies();
-		}
+		}/*
 		if(mapInterface != null){
 			mapInterface.loadDependencies();
-		}
+		}*/
 		if(gameMenuInterface != null){
 			gameMenuInterface.loadDependencies();
 		}

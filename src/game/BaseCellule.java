@@ -14,6 +14,7 @@ public class BaseCellule implements ICellule {
 	}
 
 	public BaseCellule() {
+		this.loadDependencies();
 		this.mouvementCost = 1;
 		this.entity = null;
 	}

@@ -2,9 +2,7 @@ package game.publicInterfaces;
 
 import java.util.ArrayList;
 
-public interface IGame extends Plugin {
-
-	void play();
+public interface IGame extends LaunchablePlugin {
 
 	int getTurn();
 

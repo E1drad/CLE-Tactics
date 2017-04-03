@@ -37,7 +37,12 @@ public class ExtensionDescr {
      * vrai si l'extension est en cours d'exécution
      */
     private boolean isRunning;
-
+    
+    /**
+     * vrai si l'extension est un lançable
+     */
+    private boolean isLaunchablePlugin;
+    
     public ExtensionDescr(){}
 
     public String getName() {
@@ -95,4 +100,12 @@ public class ExtensionDescr {
     public void setRunning(boolean running) {
         isRunning = running;
     }
+    
+    public boolean isLaunchablePlugin() {
+        return isLaunchablePlugin;
+    }
+
+    public void setLaunchablePlugin(boolean launchablePlugin) {
+    	isLaunchablePlugin = launchablePlugin;
+    } 
 }

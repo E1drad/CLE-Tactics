@@ -2,7 +2,7 @@ package game;
 
 public class TestBaseGame {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		BaseGame baseGame = new BaseGame();
 		System.out.println("baseGame has been create");
 		BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 1, "Link", 0, null);
@@ -13,7 +13,7 @@ public class TestBaseGame {
 		System.out.println("entity1 has been add on map");
 		baseGame.addCharactersOnMap(entity2, 1, 0);
 		System.out.println("entity2 has been add on map");
-		baseGame.play();
+		baseGame.launch();
 	}
 
 }

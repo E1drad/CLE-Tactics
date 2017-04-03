@@ -1,6 +1,7 @@
 package game;
 
 import framework.ExtensionDescr;
+import framework.ExtensionLoader;
 import game.publicInterfaces.IMonitor;
 
 import java.util.ArrayList;
@@ -26,5 +27,13 @@ public class BaseMonitor implements IMonitor {
 	@Override
 	public void loadDependencies() {
 		
+	}
+
+	@Override
+	public void launch() {
+        ExtensionLoader loader = ExtensionLoader.getInstance();
+		for(String ext : this.isLoad(loader.getExtensions())){
+			System.out.println("Extension : "+ext+" chargee avec succes.");
+		}
 	}
 }

@@ -3,7 +3,6 @@ package game;
 import java.util.ArrayList;
 
 import framework.ExtensionLoader;
-import game.BaseMap;
 import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
 import game.publicInterfaces.IGame;
@@ -23,15 +22,17 @@ public class BaseGame implements IGame{
 		this.mapDisplay = mapDisplay;
 	}
 
-	public BaseGame() {		
+	public BaseGame() throws InstantiationException, IllegalAccessException {	
+		this.loadDependencies();
+		ExtensionLoader loader = ExtensionLoader.getInstance();
 		this.turn = 0;
-		this.map = new BaseMap();
+		this.map = (IMap) loader.newInstanceof("game.publicInterfaces.IMap");
 		this.characters = new ArrayList<IEntity>();
-		this.mapDisplay = new BaseMapDisplay();
+		this.mapDisplay = (IMapDisplay) loader.newInstanceof("game.publicInterfaces.IMapDisplay");
 	}
 
 	@Override
-	public void play(){
+	public void launch(){
 		int i, j;
 		
 		this.init();

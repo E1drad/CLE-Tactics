@@ -55,13 +55,15 @@ public class BaseMap implements IMap {
 	public BaseMap(){
 		int height;
 		int width;
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		this.loadDependencies();
 		height = 8;
 		width = 8;
 		this.map = new ArrayList<ArrayList<ICellule>>();
 		for(int i = 0; i < height; ++i){
 			this.map.add(new ArrayList<ICellule>());
 			for(int j = 0; j < width; ++j){
-				this.map.get(i).add(new BaseCellule());
+				this.map.get(i).add((ICellule) loader.newInstanceof("game.publicInterfaces.ICellule"));
 			}
 		}
 	}

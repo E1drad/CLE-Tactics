@@ -1,20 +1,21 @@
 package framework;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import game.publicInterfaces.IMap;
+import game.publicInterfaces.LaunchablePlugin;
 import game.publicInterfaces.Plugin;
 
 public class ExtensionLoader {
@@ -30,7 +31,7 @@ public class ExtensionLoader {
     private JSONArray config;
 
     /**
-     * liste d'extensions qui ne sont pas en autorun
+     * liste de toutes les extensions
      */
     private List<ExtensionDescr> extensions;
 
@@ -39,6 +40,13 @@ public class ExtensionLoader {
      */
     private List<ExtensionDescr> extensions_ar;
 
+    /**
+     * liste d'extensions qui sont en lancable
+     */
+	private List<ExtensionDescr> extensionsLP;
+
+	private Map<String, Class<?>> mapClassInterface;
+	
     /**
      * Constructeur
      */
@@ -63,19 +71,25 @@ public class ExtensionLoader {
     private void setExtensionDescr(){
         extensions = new ArrayList<ExtensionDescr>();
         extensions_ar = new ArrayList<ExtensionDescr>();
+        extensionsLP = new ArrayList<ExtensionDescr>();
+        mapClassInterface = new HashMap<String, Class<?>>();
         for(Object extension : config) {
             JSONObject e = (JSONObject) extension;
             ExtensionDescr descr = new ExtensionDescr();
             descr.setName((String)e.get("name"));
             descr.setAutorun((boolean)e.get("autorun"));
+            descr.setLaunchablePlugin((boolean)e.get("launchable_plugin"));
             descr.setClass_name((String)e.get("class_name"));
             descr.setInterface_name((String)e.get("interface"));
             descr.setPath((String)e.get("path"));
             descr.setDescription((String)e.get("description"));
-            if(descr.isAutorun())
+            if(descr.isAutorun()){
                 extensions_ar.add(descr);
-            else
-                extensions.add(descr);
+            }
+            if(descr.isLaunchablePlugin()){
+                extensionsLP.add(descr);
+            }
+            extensions.add(descr);
         }
     }
     
@@ -86,20 +100,22 @@ public class ExtensionLoader {
     public void loadExt() throws ClassNotFoundException, InstantiationException, IllegalAccessException, MalformedURLException {
     	
     	for(ExtensionDescr descr : extensions_ar) {
-    		
     		File f = new File(descr.getPath());
+
         	URL[] cp = {f.toURI().toURL()};
-        	URLClassLoader urlcl = new URLClassLoader(cp);
+        	@SuppressWarnings("resource")
+			URLClassLoader urlcl = new URLClassLoader(cp);
         	Class<?> clazz = urlcl.loadClass(descr.getClass_name());
-    
+
         	Object res = clazz.newInstance();
+        	this.mapClassInterface.put(descr.getInterface_name(), clazz);
             System.out.println("Chargement de la classe " + descr.getClass_name());
         	descr.setRunning(true);
-
+/*
             if(res instanceof Plugin){
                 System.out.println("Chargement des dependances la classe " + descr.getClass_name());
             	((Plugin) res).loadDependencies();
-            }
+            }*/
     	}    	
     }
 
@@ -116,6 +132,7 @@ public class ExtensionLoader {
 	                    Class<?> cl = Class.forName(descr.getClass_name());
 	                    Object res  = cl.newInstance();
 	                    descr.setRunning(true);
+	                	this.mapClassInterface.put(descr.getInterface_name(), cl);
 	                    System.out.println("\tChargement d'une dependance : la classe " + descr.getClass_name());
 
 	                    return res;
@@ -167,8 +184,16 @@ public class ExtensionLoader {
     public List<ExtensionDescr> getExtensions_ar() {
         return extensions_ar;
     }
+    
+    public List<ExtensionDescr> getExtensionsLP() {
+		return extensionsLP;
+	}
 
-    /**
+	public Map<String, Class<?>> getMapClassInterface() {
+		return mapClassInterface;
+	}
+
+	/**
      * Parser de fichier config en json
      * @param filename le fichier de config à parser
      * @return le tableau des extensions
@@ -186,15 +211,36 @@ public class ExtensionLoader {
 
 	public void launchMainExt() {
 		try {
-			for(ExtensionDescr descr : extensions_ar){
+			for(ExtensionDescr descr : extensionsLP){
 				if(descr.isRunning()){
 					if(descr.getInterface_name() != null){
+						System.out.println("Lancement de la classe " + descr.getClass_name());
 						
+						Class<?> cl = Class.forName(descr.getClass_name());
+	                    Object res  = cl.newInstance();
+	                    if(res instanceof LaunchablePlugin){
+	                    	((LaunchablePlugin) res).launch();
+	                    	
+	                    }
 					}
 				}
 			}
         } catch (Exception e) {
             e.printStackTrace();
         }
+	}
+
+	public Object newInstanceof(String className) {
+		Object res;
+		try {
+			res = this.mapClassInterface.get(className).newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+            return null;
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+            return null;
+		}
+		return res;
 	}
 }

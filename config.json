@@ -6,7 +6,8 @@
       "interface" : "game.publicInterfaces.ICellule",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
      {
       "name" : "ArtificialIntelligence",
@@ -14,7 +15,8 @@
       "interface" : "game.publicInterfaces.IArtificialIntelligence",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
     {
       "name" : "AbilityScore",
@@ -22,7 +24,8 @@
       "interface" : "game.publicInterfaces.IAbilityScore",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
     
     {
@@ -31,7 +34,8 @@
       "interface" : "game.publicInterfaces.IEntity",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
      {
       "name" : "GameMenu",
@@ -39,7 +43,8 @@
       "interface" : "game.publicInterfaces.IGameMenu",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
     {
       "name" : "MapDisplay",
@@ -47,7 +52,8 @@
       "interface" : "game.publicInterfaces.IMapDisplay",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
     {
       "name" : "Map",
@@ -55,7 +61,8 @@
       "interface" : "game.publicInterfaces.IMap",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     },
     {
       "name" : "CLE-Tactics",
@@ -63,7 +70,8 @@
       "interface" : "game.publicInterfaces.IGame",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : true,
+      "launchable_plugin" : true
     },
     {
       "name" : "Monitoring",
@@ -71,7 +79,8 @@
       "interface" : "game.publicInterfaces.IMonitor",
       "path" : "./bin",
       "description" : "Module de supervision",
-      "autorun" : true
+      "autorun" : true,
+      "launchable_plugin" : true
     },
     {
       "name" : "Extension1",
@@ -79,7 +88,8 @@
       "interface" : "IExtension1",
       "path" : "./bin",
       "description" : "La premiere extension",
-      "autorun" : false
+      "autorun" : false,
+      "launchable_plugin" : false
     }
   ]
 }
