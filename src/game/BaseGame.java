@@ -59,16 +59,24 @@ public class BaseGame implements IGame{
 	@Override
 	public void launch(){
 		int i;
-		
+		int j;
 		this.init();
-		
-		while(true){
-			for(i=0;i < this.characters.size();i++){
+		while(this.characters.size() > 1){
+			i = 0;
+			while(i < this.characters.size()){
+				//TODO death is not handle
 				this.mapDisplay.display(this.map);
 				this.characters.get(i).action(this.map);
-				
-			}	
-		this.turn = this.turn + 1;
+				j = 0;
+				while(j < this.characters.size()){
+					if (!this.characters.get(j).isAlive()) {
+						this.characters.remove(this.characters.get(j));
+					}
+					j = j + 1;
+				}	
+				i = i + 1;	
+			}
+			this.turn = this.turn + 1;
 		}
 	}
 
