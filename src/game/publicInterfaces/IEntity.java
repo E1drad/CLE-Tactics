@@ -40,4 +40,8 @@ public interface IEntity extends Plugin {
 
 	void resetCounters();
 
+	ArrayList<String> getAvailableActions();
+
+	void skipTurn();
+
 }

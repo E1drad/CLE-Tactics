@@ -28,7 +28,6 @@ public class GuiGameMenu implements IGameMenu {
         }
     }
 
-    @Override
     public int moveTo(IEntity baseEntity, IMap map, int movementSpeed) {
         return 0;
     }
@@ -52,5 +51,29 @@ public class GuiGameMenu implements IGameMenu {
 	@Override
 	public void loadDependencies() {
 		
+	}
+
+	@Override
+	public int moveToRight(IEntity baseEntity, IMap map, int movementSpeed) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int moveToLeft(IEntity baseEntity, IMap map, int movementSpeed) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int moveToDown(IEntity baseEntity, IMap map, int movementSpeed) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int moveToUp(IEntity baseEntity, IMap map, int movementSpeed) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
