@@ -56,6 +56,11 @@ public class GuiGame  implements IGame{
 
 
     @Override
+    public IGame getInstance() {
+        return null;
+    }
+
+    @Override
     public int getTurn() {
         return turn;
     }
@@ -133,7 +138,8 @@ public class GuiGame  implements IGame{
                 b.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //TODO action
+                        characters.get(turn).attack(map.getAdjacentEntities(map.findEntity
+                                (characters.get(turn))).get(0).getEntity(),10);
                     }
                 });
             }
