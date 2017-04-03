@@ -163,4 +163,11 @@ public class BaseEntity implements IEntity {
 		}
 	}
 	
+	@Override
+	public void attack(IEntity entity, int attackValue) {
+		
+		entity.modHitPoint( (-1) * this.abilityScore.getAttackValue() );
+		alreadyAttackedThisTurn=true;
+		
+	}
 }

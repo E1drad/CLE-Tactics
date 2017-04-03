@@ -32,4 +32,6 @@ public interface IEntity extends Plugin {
 
 	ArrayList<Integer> getPosition(IMap map);
 
+	void attack(IEntity entity, int attackValue);
+
 }
