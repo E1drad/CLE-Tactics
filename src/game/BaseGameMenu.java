@@ -186,5 +186,11 @@ public class BaseGameMenu implements IGameMenu {
 		if(entityInterface != null){
 			entityInterface.loadDependencies();
 		}
+		if(celluleInterface != null){
+			celluleInterface.loadDependencies();
+		}
+		if(mapInterface != null){
+			mapInterface.loadDependencies();
+		}
 	}
 }
