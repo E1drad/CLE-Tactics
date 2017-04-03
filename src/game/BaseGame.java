@@ -14,21 +14,46 @@ public class BaseGame implements IGame{
 	private IMap map;
 	private ArrayList<IEntity> characters;
 	private IMapDisplay mapDisplay;
+
+    /**
+     * Instance unique du BaseGame
+     */
+    private static IGame INSTANCE;
+
 	
+    /**
+     * Retourne l'instance de la classe ExtensionLoader
+     * @return instance en cours
+     */
+	public synchronized IGame getInstance() {
+        if(INSTANCE == null){
+            try {
+				INSTANCE = new BaseGame();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+        }
+        return INSTANCE;
+    }
+
 	public BaseGame(int turn, IMap map, ArrayList<IEntity> characters, IMapDisplay mapDisplay) {
 		this.turn = turn;
 		this.map = map;
 		this.characters = characters;
 		this.mapDisplay = mapDisplay;
+		INSTANCE = this;
 	}
 
-	public BaseGame() throws InstantiationException, IllegalAccessException {	
+	public BaseGame() throws InstantiationException, IllegalAccessException {
 		this.loadDependencies();
 		ExtensionLoader loader = ExtensionLoader.getInstance();
 		this.turn = 0;
 		this.map = (IMap) loader.newInstanceof("game.publicInterfaces.IMap");
 		this.characters = new ArrayList<IEntity>();
 		this.mapDisplay = (IMapDisplay) loader.newInstanceof("game.publicInterfaces.IMapDisplay");
+		INSTANCE = this;
 	}
 
 	@Override
