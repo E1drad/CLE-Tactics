@@ -34,4 +34,10 @@ public interface IEntity extends Plugin {
 
 	void attack(IEntity entity, int attackValue);
 
+	void startTurn();
+
+	void endTurn();
+
+	void resetCounters();
+
 }

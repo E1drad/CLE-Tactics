@@ -15,6 +15,9 @@ public class BaseEntity implements IEntity {
 	private String name;
 	private int team;
 	private IArtificialIntelligence artificialIntelligence;
+	private int movesLeft;
+	private boolean alreadyAttackedThisTurn;
+	private boolean endedThisTurn;
 
 	public BaseEntity(IAbilityScore abilityScore, int identifier, String name,
 			int team, IArtificialIntelligence artificialIntelligence) {
@@ -170,4 +173,26 @@ public class BaseEntity implements IEntity {
 		alreadyAttackedThisTurn=true;
 		
 	}
+	
+	@Override
+	public void startTurn(){
+	}
+	
+
+	@Override
+	public void endTurn(){
+		resetCounters();
+	}
+	
+	@Override
+	public void resetCounters(){
+		//All counters are reset at the end of Turn.
+		//It allows buffs to be done on these. ( +3 Movespeed buff for example )
+		//They would be overwritten otherwise.
+		movesLeft=abilityScore.getMovementSpeed();
+		alreadyAttackedThisTurn=false;
+		endedThisTurn=false;
+		
+	}
 }
+
