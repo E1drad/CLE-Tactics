@@ -11,7 +11,12 @@ import java.util.List;
 
 
 public class GuiGame  implements IGame{
-    private int turn;
+    /**
+     * Instance unique du GuiGame
+     */
+    private static IGame INSTANCE;
+    
+	private int turn;
     private IMap map;
     private ArrayList<IEntity> characters;
     private IMapDisplay mapDisplay;
@@ -212,5 +217,22 @@ public class GuiGame  implements IGame{
             }
             this.turn = this.turn + 1;
         }
+    }
+
+    /**
+     * Retourne l'instance de la classe GuiGame
+     * @return instance en cours
+     */
+	public synchronized IGame getInstance() {
+        if(INSTANCE == null){
+            try {
+				INSTANCE = new BaseGame();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+        }
+        return INSTANCE;
     }
 }

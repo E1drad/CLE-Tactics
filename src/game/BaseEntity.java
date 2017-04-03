@@ -159,7 +159,8 @@ public class BaseEntity implements IEntity {
 		}
 		if(artificialIntelligenceInterface != null){
 			artificialIntelligenceInterface.loadDependencies();
-		}/*
+		}
+		/*
 		if(mapInterface != null){
 			mapInterface.loadDependencies();
 		}*/

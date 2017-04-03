@@ -22,7 +22,7 @@ public class BaseGame implements IGame{
 
 	
     /**
-     * Retourne l'instance de la classe ExtensionLoader
+     * Retourne l'instance de la classe BaseGame
      * @return instance en cours
      */
 	public synchronized IGame getInstance() {

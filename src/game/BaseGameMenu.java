@@ -60,7 +60,7 @@ public class BaseGameMenu implements IGameMenu {
 			    }
 				
 			}else if(choice == 3){
-				System.out.println("Tour passÃ© !");
+				System.out.println("Tour passée !");
 				test = true;
 			}else{
 				if(movementSpeed > 0){
@@ -134,8 +134,9 @@ public class BaseGameMenu implements IGameMenu {
 			map.getCellule(y, x).setEntity(null);
 			x++;
 			map.getCellule(y, x).setEntity(baseEntity);
+			movementSpeed = movementSpeed - map.getCellule(y, x).getMouvementCost();
 		} else {
-			System.out.println("Le chemin est bloquÃ©");
+			System.out.println("Le chemin est bloqué");
 		}
 		return movementSpeed;
 	}
@@ -147,8 +148,9 @@ public class BaseGameMenu implements IGameMenu {
 			map.getCellule(y, x).setEntity(null);
 			x--;
 			map.getCellule(y, x).setEntity(baseEntity);
+			movementSpeed = movementSpeed - map.getCellule(y, x).getMouvementCost();
 		} else {
-			System.out.println("Le chemin est bloquÃ©");
+			System.out.println("Le chemin est bloqué");
 		}
 		return movementSpeed;
 	}
@@ -160,8 +162,9 @@ public class BaseGameMenu implements IGameMenu {
 			map.getCellule(y, x).setEntity(null);
 			y++;
 			map.getCellule(y, x).setEntity(baseEntity);
+			movementSpeed = movementSpeed - map.getCellule(y, x).getMouvementCost();
 		} else {
-			System.out.println("Le chemin est bloquÃ©");
+			System.out.println("Le chemin est bloqué");
 		}
 		return movementSpeed;
 	}
@@ -173,8 +176,9 @@ public class BaseGameMenu implements IGameMenu {
 			map.getCellule(y, x).setEntity(null);
 			y--;
 			map.getCellule(y, x).setEntity(baseEntity);
+			movementSpeed = movementSpeed - map.getCellule(y, x).getMouvementCost();
 		} else {
-			System.out.println("Le chemin est bloquÃ©");
+			System.out.println("Le chemin est bloqué");
 		}
 		return movementSpeed;
 	}
