@@ -2,7 +2,7 @@ package game.publicInterfaces;
 
 import java.util.ArrayList;
 
-public interface IGame {
+public interface IGame extends Plugin {
 
 	void play();
 

@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
+import framework.ExtensionLoader;
 import game.publicInterfaces.IAbilityScore;
 import game.publicInterfaces.IArtificialIntelligence;
 import game.publicInterfaces.IEntity;
@@ -137,6 +138,27 @@ public class BaseEntity implements IEntity {
 		}
 		
 		return position;
+	}
+
+	@Override
+	public void loadDependencies() {
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		IGameMenu gameMenuInterface = (IGameMenu)loader.loadDefaultExtension(IGameMenu.class);
+		IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
+		IArtificialIntelligence artificialIntelligenceInterface = (IArtificialIntelligence) loader.loadDefaultExtension(IArtificialIntelligence.class);
+		IAbilityScore abilityScoreInterface = (IAbilityScore) loader.loadDefaultExtension(IAbilityScore.class);
+		if(abilityScoreInterface != null){
+			abilityScoreInterface.loadDependencies();
+		}
+		if(artificialIntelligenceInterface != null){
+			artificialIntelligenceInterface.loadDependencies();
+		}
+		if(mapInterface != null){
+			mapInterface.loadDependencies();
+		}
+		if(gameMenuInterface != null){
+			gameMenuInterface.loadDependencies();
+		}
 	}
 	
 }

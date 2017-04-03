@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
+import framework.ExtensionLoader;
 import game.BaseMap;
 import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
@@ -9,7 +10,7 @@ import game.publicInterfaces.IGame;
 import game.publicInterfaces.IMap;
 import game.publicInterfaces.IMapDisplay;
 
-public class BaseGame implements IGame {
+public class BaseGame implements IGame{
 	private int turn;
 	private IMap map;
 	private ArrayList<IEntity> characters;
@@ -22,7 +23,7 @@ public class BaseGame implements IGame {
 		this.mapDisplay = mapDisplay;
 	}
 
-	public BaseGame() {
+	public BaseGame() {		
 		this.turn = 0;
 		this.map = new BaseMap();
 		this.characters = new ArrayList<IEntity>();
@@ -106,5 +107,26 @@ public class BaseGame implements IGame {
 		this.addCharactersOnMap(entity2, 1, 0);
 		System.out.println("entity2 has been added on map.");
 	
+	}
+	
+	@Override
+	public void loadDependencies(){
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		IMap mapInterface = (IMap)loader.loadDefaultExtension(IMap.class);
+        IMapDisplay mapDisplayInterface = (IMapDisplay)loader.loadDefaultExtension(IMapDisplay.class);
+        IEntity entityInterface = (IEntity) loader.loadDefaultExtension(IEntity.class);
+        ICellule celluleInterface = (ICellule) loader.loadDefaultExtension(ICellule.class);
+        if(entityInterface != null){
+	        entityInterface.loadDependencies();
+		}
+		if(celluleInterface != null){
+	        celluleInterface.loadDependencies();
+		}
+		if(mapInterface != null){
+			mapInterface.loadDependencies();
+		}
+		if(mapDisplayInterface != null){
+			mapDisplayInterface.loadDependencies();
+		}
 	}
 }

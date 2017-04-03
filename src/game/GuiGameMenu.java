@@ -48,4 +48,9 @@ public class GuiGameMenu implements IGameMenu {
     public void bas(IEntity baseEntity, IMap map, int movementSpeed){
         System.out.println("bas");
     }
+
+	@Override
+	public void loadDependencies() {
+		
+	}
 }

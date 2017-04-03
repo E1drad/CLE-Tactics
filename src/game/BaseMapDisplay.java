@@ -1,5 +1,6 @@
 package game;
 
+import framework.ExtensionLoader;
 import game.publicInterfaces.IMap;
 import game.publicInterfaces.IMapDisplay;
 
@@ -22,6 +23,15 @@ public class BaseMapDisplay implements IMapDisplay {
 			}
 			System.out.println(str + "|");
             str = "|\t";
+		}
+	}
+
+	@Override
+	public void loadDependencies() {
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
+		if(mapInterface != null){
+			mapInterface.loadDependencies();
 		}
 	}
 

@@ -15,6 +15,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import game.publicInterfaces.Plugin;
+
 public class ExtensionLoader {
 
     /**
@@ -91,35 +93,46 @@ public class ExtensionLoader {
         	Class<?> clazz = urlcl.loadClass(descr.getClass_name());
     
         	Object res = clazz.newInstance();
+            System.out.println("Chargement de la classe " + descr.getClass_name());
         	descr.setRunning(true);
-            
+
+            if(res instanceof Plugin){
+                System.out.println("Chargement des dependances la classe " + descr.getClass_name());
+            	((Plugin) res).loadDependencies();
+            }
     	}    	
     }
 
     /**
-     * Charge une extension autorun qui implémente l'interface spécifié
+     * Charge une extension qui implémente l'interface spécifié
      * @param inter interface implémentée
      * @return une instance de l'interface
      */
 	public Object loadDefaultExtension(Class<?> inter){
-        for(ExtensionDescr descr : extensions_ar){
+        for(ExtensionDescr descr : extensions){
             if(inter.getName().equals(descr.getInterface_name())){
-                try {
-                    Class<?> cl = Class.forName(descr.getClass_name());
-                    Object res  = cl.newInstance();
-                    descr.setRunning(true);
-                    return res;
+	            if( !descr.isRunning()){
+	                try {
+	                    Class<?> cl = Class.forName(descr.getClass_name());
+	                    Object res  = cl.newInstance();
+	                    descr.setRunning(true);
+	                    System.out.println("\tChargement d'une dependance : la classe " + descr.getClass_name());
 
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                    return null;
-                } catch (InstantiationException e1) {
-                    e1.printStackTrace();
-                    return null;
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                    return null;
-                }
+	                    return res;
+	
+	                } catch (ClassNotFoundException e1) {
+	                    e1.printStackTrace();
+	                    return null;
+	                } catch (InstantiationException e1) {
+	                    e1.printStackTrace();
+	                    return null;
+	                } catch (IllegalAccessException e1) {
+	                    e1.printStackTrace();
+	                    return null;
+	                }
+	            }else{
+	            	return null;
+	            }
             }
         }
         return null;
@@ -170,4 +183,18 @@ public class ExtensionLoader {
             return null;
         }
     }
+
+	public void launchMainExt() {
+		try {
+			for(ExtensionDescr descr : extensions_ar){
+				if(descr.isRunning()){
+					if(descr.getInterface_name() != null){
+						
+					}
+				}
+			}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
 }

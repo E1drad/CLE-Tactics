@@ -1,6 +1,6 @@
 package game.publicInterfaces;
 
-public interface IMapDisplay {
+public interface IMapDisplay extends Plugin {
 
 	void display(IMap map);
 

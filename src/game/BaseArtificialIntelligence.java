@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
+import framework.ExtensionLoader;
 import game.publicInterfaces.IArtificialIntelligence;
 import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
@@ -32,5 +33,22 @@ public class BaseArtificialIntelligence implements IArtificialIntelligence {
 	public int moveTo(IEntity baseEntity, IMap map) {
 
 		return 0;
+	}
+
+	@Override
+	public void loadDependencies() {
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+        IEntity entityInterface = (IEntity) loader.loadDefaultExtension(IEntity.class);
+        ICellule celluleInterface = (ICellule) loader.loadDefaultExtension(ICellule.class);
+		IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
+		if(entityInterface != null){
+	        entityInterface.loadDependencies();
+		}
+		if(celluleInterface != null){
+	        celluleInterface.loadDependencies();
+		}
+		if(mapInterface != null){
+			mapInterface.loadDependencies();
+		}
 	}
 }

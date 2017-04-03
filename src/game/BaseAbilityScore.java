@@ -23,6 +23,7 @@ public class BaseAbilityScore implements IAbilityScore {
 		this.movementSpeed = movementSpeed;
 		this.attackValue = attackValue;
 	}
+	
 	public BaseAbilityScore() {
 		this.hitPoint = 10;
 		this.maxHitPoint = 10;
@@ -68,6 +69,11 @@ public class BaseAbilityScore implements IAbilityScore {
 	@Override
 	public void setAttackValue(int attackValue) {
 		this.attackValue = attackValue;
+	}
+
+	@Override
+	public void loadDependencies() {
+		
 	}
 	
 }

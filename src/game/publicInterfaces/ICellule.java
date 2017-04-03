@@ -1,6 +1,6 @@
 package game.publicInterfaces;
 
-public interface ICellule {
+public interface ICellule extends Plugin {
 
 	int getMouvementCost();
 

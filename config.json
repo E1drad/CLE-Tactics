@@ -6,7 +6,7 @@
       "interface" : "game.publicInterfaces.ICellule",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
      {
       "name" : "ArtificialIntelligence",
@@ -14,7 +14,7 @@
       "interface" : "game.publicInterfaces.IArtificialIntelligence",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
     {
       "name" : "AbilityScore",
@@ -22,7 +22,7 @@
       "interface" : "game.publicInterfaces.IAbilityScore",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
     
     {
@@ -31,7 +31,7 @@
       "interface" : "game.publicInterfaces.IEntity",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
      {
       "name" : "GameMenu",
@@ -39,7 +39,7 @@
       "interface" : "game.publicInterfaces.IGameMenu",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
     {
       "name" : "MapDisplay",
@@ -47,7 +47,7 @@
       "interface" : "game.publicInterfaces.IMapDisplay",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
     {
       "name" : "Map",
@@ -55,7 +55,7 @@
       "interface" : "game.publicInterfaces.IMap",
       "path" : "./bin",
       "description" : "Module de base du jeu",
-      "autorun" : true
+      "autorun" : false
     },
     {
       "name" : "CLE-Tactics",

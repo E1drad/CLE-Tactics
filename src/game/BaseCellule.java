@@ -1,5 +1,6 @@
 package game;
 
+import framework.ExtensionLoader;
 import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
 
@@ -40,6 +41,15 @@ public class BaseCellule implements ICellule {
 	@Override
 	public void setEntity(IEntity entity) {
 		this.entity = entity;
+	}
+
+	@Override
+	public void loadDependencies() {
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		IEntity entityInterface = (IEntity) loader.loadDefaultExtension(IEntity.class);
+		if(entityInterface != null){
+	        entityInterface.loadDependencies();
+		}
 	}
 
 }

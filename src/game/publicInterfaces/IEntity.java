@@ -2,7 +2,7 @@ package game.publicInterfaces;
 
 import java.util.ArrayList;
 
-public interface IEntity {
+public interface IEntity extends Plugin {
 
 	void action(IMap map);
 

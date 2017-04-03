@@ -2,7 +2,7 @@ package game.publicInterfaces;
 
 import java.util.ArrayList;
 
-public interface IMap {
+public interface IMap extends Plugin {
 
 	int getWidth();
 

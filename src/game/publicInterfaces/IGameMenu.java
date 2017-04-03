@@ -1,6 +1,6 @@
 package game.publicInterfaces;
 
-public interface IGameMenu {
+public interface IGameMenu extends Plugin {
 
 	void actionMenu(IEntity baseEntity, IMap map, int movementSpeed, int attackValue);
 

@@ -22,4 +22,9 @@ public class BaseMonitor implements IMonitor {
 		}
 		return ret;
 	}
+
+	@Override
+	public void loadDependencies() {
+		
+	}
 }

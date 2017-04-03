@@ -1,6 +1,6 @@
 package game.publicInterfaces;
 
-public interface IAbilityScore {
+public interface IAbilityScore extends Plugin {
 
 	int getHitPoint();
 
