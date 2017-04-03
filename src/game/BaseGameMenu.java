@@ -6,11 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import framework.ExtensionLoader;
-import game.publicInterfaces.ICellule;
-import game.publicInterfaces.IEntity;
-import game.publicInterfaces.IGameMenu;
-import game.publicInterfaces.IMap;
+import game.publicInterfaces.*;
 
 public class BaseGameMenu implements IGameMenu {
 	
@@ -21,8 +17,10 @@ public class BaseGameMenu implements IGameMenu {
 	@Override
 	public void actionMenu(IEntity entity, IMap map, int movementSpeed, int attackValue) {
 		int choice;
+		int direction;
 		boolean test = false;
 		System.out.println("Debut du tour de " + entity.getName());
+		System.out.println("Il vous reste " + movementSpeed + " point(s) de mouvement");
 		while((!test)){
 			System.out.println("Qu'est que vous allez faire ?\n\t"
 					+ " 1/ Pour attaquer\n\t"
@@ -35,7 +33,28 @@ public class BaseGameMenu implements IGameMenu {
 				this.attaquer(entity, map, attackValue);
 				test = true;
 			}else if(choice == 2 && movementSpeed > 0){
-				movementSpeed = this.moveTo(entity, map, movementSpeed);
+				System.out.println("Dans quelle direction ?\n\t"
+						+ " 1/ Droite\n\t"
+						+ " 2/ Gauche\n\t"
+						+ " 3/ Bas\n\t"
+						+ " 4/ Haut\n\t");
+				
+			    direction = getInt();
+			    switch(direction){
+			    	case 1: direction = 1;
+			    			movementSpeed = this.moveToRight(entity, map, movementSpeed);
+			    			break;
+			    	case 2: direction = 2;
+			    			movementSpeed = this.moveToLeft(entity, map, movementSpeed);
+			    			break;
+			    	case 3: direction = 3;
+			    			movementSpeed = this.moveToDown(entity, map, movementSpeed);
+			    			break;
+			    	case 4: direction = 4;
+			    			movementSpeed = this.moveToUp(entity, map, movementSpeed);
+			    			break;	
+			    }
+				
 			}else if(choice == 3){
 				test = true;
 			}else{
@@ -58,6 +77,7 @@ public class BaseGameMenu implements IGameMenu {
 		if( !adjacentEntity.isEmpty()){
 			int choice;
 			boolean test = false;
+			System.out.println("Nombre de cible : " + adjacentEntity.size());
 			while((!test)){
 				System.out.println("Qui voulez vous attaquer ?\n\t");
 				System.out.println("Nombre de cible : " + adjacentEntity.size());
@@ -101,26 +121,56 @@ public class BaseGameMenu implements IGameMenu {
 		return buffer;
 	}
 	
-	@Override
-	public int moveTo(IEntity baseEntity, IMap map, int movementSpeed) {
-		//System.out.println("x : " + baseEntity.getPosition(map).get(0) + " ; y : " + baseEntity.getPosition(map).get(1));
-		return 0;
+	public int moveToRight(IEntity baseEntity, IMap map, int movementSpeed) {
+		int x = baseEntity.getPosition(map).get(1);
+		int y = baseEntity.getPosition(map).get(0);
+		if(x<map.getWidth()-1 && map.getCellule(y, x+1).isEmpty()){
+			map.getCellule(y, x).setEntity(null);
+			x++;
+			map.getCellule(y, x).setEntity(baseEntity);
+		} else {
+			System.out.println("Le chemin est bloqué");
+		}
+		return movementSpeed;
 	}
-
-	@Override
-	public void loadDependencies() {
-		ExtensionLoader loader = ExtensionLoader.getInstance();
-		IEntity entityInterface = (IEntity) loader.loadDefaultExtension(IEntity.class);
-		ICellule celluleInterface = (ICellule) loader.loadDefaultExtension(ICellule.class);
-		IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
-		if(entityInterface != null){
-			entityInterface.loadDependencies();
+	
+	public int moveToLeft(IEntity baseEntity, IMap map, int movementSpeed) {
+		int x = baseEntity.getPosition(map).get(1);
+		int y = baseEntity.getPosition(map).get(0);
+		if(x > 0 && map.getCellule(y, x-1).isEmpty()){
+			map.getCellule(y, x).setEntity(null);
+			x--;
+			map.getCellule(y, x).setEntity(baseEntity);
+		} else {
+			System.out.println("Le chemin est bloqué");
 		}
-		if(celluleInterface != null){
-			celluleInterface.loadDependencies();
-		}
-		if(mapInterface != null){
-			mapInterface.loadDependencies();
-		}
+		return movementSpeed;
 	}
+	
+	public int moveToDown(IEntity baseEntity, IMap map, int movementSpeed) {
+		int x = baseEntity.getPosition(map).get(1);
+		int y = baseEntity.getPosition(map).get(0);
+		if(y<map.getHeight()-1 && map.getCellule(y+1, x).isEmpty()){
+			map.getCellule(y, x).setEntity(null);
+			y++;
+			map.getCellule(y, x).setEntity(baseEntity);
+		} else {
+			System.out.println("Le chemin est bloqué");
+		}
+		return movementSpeed;
+	}
+	
+	public int moveToUp(IEntity baseEntity, IMap map, int movementSpeed) {
+		int x = baseEntity.getPosition(map).get(1);
+		int y = baseEntity.getPosition(map).get(0);
+		if(y > 0 && map.getCellule(y-1, x).isEmpty()){
+			map.getCellule(y, x).setEntity(null);
+			y--;
+			map.getCellule(y, x).setEntity(baseEntity);
+		} else {
+			System.out.println("Le chemin est bloqué");
+		}
+		return movementSpeed;
+	}
+	
 }
