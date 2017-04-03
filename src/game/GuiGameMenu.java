@@ -28,6 +28,7 @@ public class GuiGameMenu implements IGameMenu {
         }
     }
 
+
     @Override
     public int moveToRight(IEntity baseEntity, IMap map, int movementSpeed) {
         return 0;
@@ -69,4 +70,5 @@ public class GuiGameMenu implements IGameMenu {
 	public void loadDependencies() {
 		
 	}
+
 }
