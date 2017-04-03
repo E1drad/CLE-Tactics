@@ -6,7 +6,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import game.publicInterfaces.*;
+import framework.ExtensionLoader;
+import game.publicInterfaces.ICellule;
+import game.publicInterfaces.IEntity;
+import game.publicInterfaces.IGameMenu;
+import game.publicInterfaces.IMap;
 
 public class BaseGameMenu implements IGameMenu {
 	
@@ -172,5 +176,15 @@ public class BaseGameMenu implements IGameMenu {
 		}
 		return movementSpeed;
 	}
-	
+
+	@Override
+	public void loadDependencies() {
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		IEntity entityInterface = (IEntity) loader.loadDefaultExtension(IEntity.class);
+		ICellule celluleInterface = (ICellule) loader.loadDefaultExtension(ICellule.class);
+		IMap mapInterface = (IMap) loader.loadDefaultExtension(IMap.class);
+		if(entityInterface != null){
+			entityInterface.loadDependencies();
+		}
+	}
 }
