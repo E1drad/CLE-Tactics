@@ -128,6 +128,7 @@ public class BaseGameMenu implements IGameMenu {
 	public int moveToRight(IEntity baseEntity, IMap map, int movementSpeed) {
 		int x = baseEntity.getPosition(map).get(1);
 		int y = baseEntity.getPosition(map).get(0);
+		
 		if(x<map.getWidth()-1 && map.getCellule(y, x+1).isEmpty()){
 			map.getCellule(y, x).setEntity(null);
 			x++;

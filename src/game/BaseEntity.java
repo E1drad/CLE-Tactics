@@ -15,6 +15,9 @@ public class BaseEntity implements IEntity {
 	private String name;
 	private int team;
 	private IArtificialIntelligence artificialIntelligence;
+	private int movesLeft;
+	private boolean alreadyAttackedThisTurn;
+	private boolean endedThisTurn;
 
 	public BaseEntity(IAbilityScore abilityScore, int identifier, String name,
 			int team, IArtificialIntelligence artificialIntelligence) {
@@ -33,7 +36,8 @@ public class BaseEntity implements IEntity {
 		this.team = 0;
 		this.artificialIntelligence = null;
 	}
-
+	
+	//TODO Use getAvailableActions() for the human -controlled part
 	@Override
 	public void action(IMap map) {
 		//System.out.println("x : " + getPosition(map).get(0) + " ; y : " + getPosition(map).get(1));
@@ -164,4 +168,110 @@ public class BaseEntity implements IEntity {
 		}
 	}
 	
+	@Override
+	public void attack(IEntity entity, int attackValue) {
+		
+		entity.modHitPoint( (-1) * this.abilityScore.getAttackValue() );
+		alreadyAttackedThisTurn=true;
+		
+	}
+	
+	@Override
+	public void startTurn(){
+	}
+	
+
+	@Override
+	public void endTurn(){
+		resetCounters();
+	}
+	
+	@Override
+	public void resetCounters(){
+		//All counters are reset at the end of Turn.
+		//It allows buffs to be done on these. ( +3 Movespeed buff for example )
+		//They would be overwritten otherwise.
+		movesLeft=abilityScore.getMovementSpeed();
+		alreadyAttackedThisTurn=false;
+		endedThisTurn=false;
+		
+	}
+	
+	@Override
+	public ArrayList<String> getAvailableActions(){
+		ArrayList<String> actions = new ArrayList<String>();
+		actions.add("skipTurn");
+		if(this.getAbilityScore().getHitPoint()>0){
+			actions.add("attack");
+			if ( isLeftAValidDirection() )	actions.add("moveLeft");
+			if ( isRightAValidDirection() )	actions.add("moveRight");
+			if ( isUpAValidDirection() )	actions.add("moveUp");
+			if ( isDownAValidDirection() )	actions.add("moveDown");		
+		}
+		return actions;
+	}
+	
+
+	private boolean isDownAValidDirection() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	private boolean isUpAValidDirection() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	private boolean isRightAValidDirection() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	private boolean isLeftAValidDirection() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public void skipTurn(){
+		endedThisTurn=true;
+		return;
+	}
+
+	public IArtificialIntelligence getArtificialIntelligence() {
+		return artificialIntelligence;
+	}
+
+	public void setArtificialIntelligence(
+			IArtificialIntelligence artificialIntelligence) {
+		this.artificialIntelligence = artificialIntelligence;
+	}
+
+	public int getMovesLeft() {
+		return movesLeft;
+	}
+
+	public void setMovesLeft(int movesLeft) {
+		this.movesLeft = movesLeft;
+	}
+
+	public boolean isAlreadyAttackedThisTurn() {
+		return alreadyAttackedThisTurn;
+	}
+
+	public void setAlreadyAttackedThisTurn(boolean alreadyAttackedThisTurn) {
+		this.alreadyAttackedThisTurn = alreadyAttackedThisTurn;
+	}
+
+	public boolean isEndedThisTurn() {
+		return endedThisTurn;
+	}
+
+	public void setEndedThisTurn(boolean endedThisTurn) {
+		this.endedThisTurn = endedThisTurn;
+	}
 }
+
