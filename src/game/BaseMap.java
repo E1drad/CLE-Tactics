@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
 import game.publicInterfaces.IMap;
+import framework.ExtensionLoader;
 
 /**
  * @brief A rectangular map.
@@ -156,5 +157,18 @@ public class BaseMap implements IMap {
 			res = this.map.get(i-1).get(j-1);
 		}
 		return res;
+	}
+
+	@Override
+	public void loadDependencies() {
+		ExtensionLoader loader = ExtensionLoader.getInstance();
+		IEntity entityInterface = (IEntity) loader.loadDefaultExtension(IEntity.class);
+		ICellule celluleInterface = (ICellule) loader.loadDefaultExtension(ICellule.class);
+		if(entityInterface != null){
+			entityInterface.loadDependencies();
+			}
+		if(celluleInterface != null){
+			celluleInterface.loadDependencies();
+		}
 	}
 }
