@@ -1,7 +1,13 @@
 package game.publicInterfaces;
 
 import java.util.ArrayList;
-
+/**
+ * @author 	CLE-Tactics https://github.com/E1drad/CLE-Tactics/graphs/contributors
+ * 
+ * Interface décrivant les méthodes dont doit disposer une entité pour s'intégrer au moteur de jeu.
+ * 
+ * Elle utilise les interfaces IMap, IAbilityScore et IArtificialIntelligence.
+ */
 public interface IEntity extends Plugin {
 
 	void action(IMap map);

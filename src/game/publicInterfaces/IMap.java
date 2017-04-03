@@ -1,7 +1,15 @@
 package game.publicInterfaces;
 
 import java.util.ArrayList;
-
+/**
+ * @author 	CLE-Tactics https://github.com/E1drad/CLE-Tactics/graphs/contributors
+ * 
+ * Classe représentant le terrain sur lequel le jeu se déroule.
+ * Elle contient des méthodes de recherches d'entités voisines et de recherche d'entité.
+ * 
+ * Elle utilise l'interface ICellule et IEntity pour décrire ses cellules et les entitées qu'elle contient.
+ * 
+ */
 public interface IMap extends Plugin {
 
 	int getWidth();

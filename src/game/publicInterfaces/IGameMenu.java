@@ -1,5 +1,11 @@
 package game.publicInterfaces;
 
+/**
+ * @author 	CLE-Tactics https://github.com/E1drad/CLE-Tactics/graphs/contributors
+ * 
+ * Classe contenant des méthodes basiques d'interaction avec le jeu par une interface non-graphique.
+ * 
+ */
 public interface IGameMenu extends Plugin {
 
 	void actionMenu(IEntity baseEntity, IMap map, int movementSpeed, int attackValue);
