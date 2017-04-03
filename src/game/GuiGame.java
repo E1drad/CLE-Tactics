@@ -2,7 +2,12 @@ package game;
 
 import game.publicInterfaces.*;
 
-import java.util.ArrayList;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 
 public class GuiGame  implements IGame{
@@ -10,6 +15,9 @@ public class GuiGame  implements IGame{
     private IMap map;
     private ArrayList<IEntity> characters;
     private IMapDisplay mapDisplay;
+
+    private JFrame main;
+    private JPanel command_panel;
 
     public GuiGame(int turn, IMap map, ArrayList<IEntity> characters,
                   IMapDisplay mapDisplay) {
@@ -20,10 +28,30 @@ public class GuiGame  implements IGame{
     }
 
     public GuiGame() {
+
+        main = new JFrame();
+        main.setTitle("CLE Tactics");
+        main.setLayout(new BoxLayout(main.getContentPane(),BoxLayout.LINE_AXIS));
+        main.setSize(1024,768);
+        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main.setLocationRelativeTo(null);
+
+        main.setVisible(true);
+
+
+        command_panel = new JPanel();
+        command_panel.setLayout(new GridLayout(10,2));
+        main.add(command_panel);
+        command_panel.setVisible(true);
+
+        this.mapDisplay = new MapUI();
+
+        main.add((JPanel)this.mapDisplay);
+        ((JPanel) this.mapDisplay).setVisible(true);
+
         this.turn = 0;
         this.map = new BaseMap();
         this.characters = new ArrayList<IEntity>();
-        this.mapDisplay = new GuiMapDisplay();
     }
 
 
@@ -68,9 +96,6 @@ public class GuiGame  implements IGame{
 
     public void init() {
 
-
-
-
         System.out.println("baseGame has been create");
         BaseEntity entity1 = new BaseEntity(new BaseAbilityScore(), 1, "Link", 0, null);
         System.out.println("entity1 has been create");
@@ -82,8 +107,6 @@ public class GuiGame  implements IGame{
         System.out.println("entity2 has been add on map");
 
         this.mapDisplay.display(map);
-
-
     }
 
     @Override
@@ -97,16 +120,36 @@ public class GuiGame  implements IGame{
         game.launch();
     }
 
+
+    private void drawCommand(int i) {
+        command_panel.removeAll();
+        List<String> com = this.characters.get(i).getAvailableActions();
+        for (String action : com) {
+            JButton b = new JButton(action);
+            command_panel.add(b);
+            b.setVisible(true);
+
+            if(action.equals("attack")){
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //TODO action
+                    }
+                });
+            }
+        }
+        command_panel.revalidate();
+    }
+
     @Override
     public void launch() {
         int i, j;
-
-
         while(this.characters.size() > 1){
             i = 0;
             while(i < this.characters.size()){
                 //TODO death is not handle
                 this.mapDisplay.display(this.map);
+                drawCommand(i);
                 this.characters.get(i).action(this.map);
                 j = 0;
                 while(j < this.characters.size()){

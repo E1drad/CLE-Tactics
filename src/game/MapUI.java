@@ -3,6 +3,7 @@ package game;
 import game.publicInterfaces.ICellule;
 import game.publicInterfaces.IEntity;
 import game.publicInterfaces.IMap;
+import game.publicInterfaces.IMapDisplay;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class MapUI extends JPanel {
+public class MapUI extends JPanel implements IMapDisplay {
 
     private Image background;
     private IMap map;
@@ -39,29 +40,45 @@ public class MapUI extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        ArrayList<ArrayList<ICellule>> cels = map.getMap();
+
         int i,j;
         IEntity entity;
 
         g.drawImage(background,0,0,this);
 
-        File sprite_file=new File("res/link.png");
-        Image img;
-        try {
-            img = ImageIO.read(sprite_file);
-        } catch (IOException e) {
-            e.printStackTrace();
-            img = null;
-        }
 
-        for(i = 0;i<cels.size();i++){
-            for (j = 0;j<cels.get(i).size();j++){
-                entity = cels.get(i).get(j).getEntity();
-                if(entity != null){
-                    g.drawImage(img,i,j,this);
+        if(map != null) {
+            ArrayList<ArrayList<ICellule>> cels = map.getMap();
+            File sprite_file = new File("res/link.png");
+            Image img;
+            try {
+                img = ImageIO.read(sprite_file);
+            } catch (IOException e) {
+                e.printStackTrace();
+                img = null;
+            }
+
+            for (i = 0; i < cels.size(); i++) {
+                for (j = 0; j < cels.get(i).size(); j++) {
+                    entity = cels.get(i).get(j).getEntity();
+                    if (entity != null) {
+                        g.drawImage(img, i, j, this);
+                    }
                 }
             }
         }
     }
 
+    @Override
+    public void loadDependencies() {
+
+    }
+
+    @Override
+    public void display(IMap map) {
+        //if(this.map != null)
+        this.map = map;
+        repaint();
+        revalidate();
+    }
 }
