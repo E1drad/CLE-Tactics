@@ -60,6 +60,7 @@ public class BaseGameMenu implements IGameMenu {
 			    }
 				
 			}else if(choice == 3){
+				System.out.println("Tour passé !");
 				test = true;
 			}else{
 				if(movementSpeed > 0){
