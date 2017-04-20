@@ -1,6 +1,6 @@
 package framework;
 
-import game.publicInterfaces.LaunchablePlugin;
+import framework.publicInterfaces.LaunchablePlugin;
 
 public class LaunchablePluginThread extends Thread {
 	private String pluginName;
