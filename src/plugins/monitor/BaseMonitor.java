@@ -2,7 +2,7 @@ package plugins.monitor;
 
 import framework.ExtensionDescr;
 import framework.ExtensionLoader;
-import framework.publicInterfaces.IMonitor;
+import monitor.publicInterfaces.IMonitor;
 
 import java.util.ArrayList;
 import java.util.List;
