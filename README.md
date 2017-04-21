@@ -13,3 +13,11 @@ Si un problème de librairie survient, ajoutez en external jar (configure build 
 ## Lancement
 
 Dans Eclipse, lancez Main.java du package framework.
+
+## Contributeurs
+BEGAUDEAU Charles-Eric
+CANOVAS-VIRLY Baptiste
+FONGUE Steven
+HALLEREAU François
+LORIOT Sacha
+MERCIER Florent
