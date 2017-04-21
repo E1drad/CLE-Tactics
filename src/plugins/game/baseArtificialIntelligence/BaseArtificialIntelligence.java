@@ -17,6 +17,13 @@ public class BaseArtificialIntelligence implements IArtificialIntelligence {
 		System.out.println("Fin du tour de " + entity.getName() + " !");
 	}
 	
+	/**
+	 * @brief permet à l'IA d'attaquer une entity voisine s'il y en a une.
+	 * @detail l'IA attaquera une entity avec l'ordre de prioriter définit par map.getAdjacentEntities
+	 * @param entity l'entity qui doit être controler par l'IA, generalement "this".
+	 * @param map la Map sur laquelle l'entity se trouve.
+	 * @param attackValue la valeur d'attaque de l'entity.
+	 */
 	@Override
 	public void attaquer(IEntity entity, IMap map, int attackValue) {
 		ICellule positionEntity = map.findEntity(entity);
@@ -29,6 +36,13 @@ public class BaseArtificialIntelligence implements IArtificialIntelligence {
 		}
 	}
 	
+	/**
+	 * @brief L'IA ne déplacera pas l'entity et empechera tout autre déplacement 
+	 * au cours de celle-ci durant se tour, sauf si les compteurs de celle-ci sont réinitialisés.
+	 * @param entity l'entity qui doit être controler par l'IA, generalement "this".
+	 * @param map la Map sur laquelle l'entity se trouve.
+	 * @return la valeur de déplacement restante.
+	 */
 	@Override
 	public int moveTo(IEntity baseEntity, IMap map) {
 

@@ -19,12 +19,19 @@ public interface ICellule extends Plugin {
 
 	void setMouvementCost(int mouvementCost);
 
+	/**
+	 * @brief indique si la cellule contient une entity
+	 * @return true si la cellule ne contient pas d'entity
+	 */
 	boolean isEmpty();
 
 	IEntity getEntity();
 
 	void setEntity(IEntity entity);
 
+	/**
+	 * @brief Vide la cellule de son entity
+	 */
 	void clearCell();
 
 }

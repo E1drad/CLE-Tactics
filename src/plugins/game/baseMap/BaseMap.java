@@ -129,7 +129,15 @@ public class BaseMap implements IMap {
 	public void setCellule(ICellule cellule, int height, int width){
 		this.map.get(height).set(width, cellule);
 	}
-
+	
+	/**
+	 * Donne la cellule au coordonnées données
+	 * @pre 0 < height < map.height 
+	 * @pre 0 < width < map.width
+	 * @param height la 1ere coordonnées, l'abscisse
+	 * @param width la 2eme coordonnées, l'ordonnée
+	 * @return la cellule
+	 */
 	@Override
 	public ICellule getCellule(int height, int width){
 		return this.map.get(height).get(width);

@@ -22,13 +22,34 @@ public interface IMap extends Plugin {
 
 	void setMap(ArrayList<ArrayList<ICellule>> map);
 
-	//TODO test this function
+	/**
+	 * Remplace la cellule dont les coordonnées sont passés en paramètre par celle passer en paramètre
+	 * @param cellule la nouvelle cellule
+	 * @param height la 1ere coordonnées, l'abscisse
+	 * @param width la 2eme coordonnées, l'ordonnée
+	 */
 	void setCellule(ICellule cellule, int height, int width);
 
+	/**
+	 * Donne la cellule au coordonnées données
+	 * @param height la 1ere coordonnées, l'abscisse
+	 * @param width la 2eme coordonnées, l'ordonnée
+	 * @return la cellule si elle existe
+	 */
 	ICellule getCellule(int height, int width);
 
+	/**
+	 * Retour les cellules adjacentes à la cellule passé en paramètre
+	 * @param cellule une cellule de la map
+	 * @return un ArrayList contenant les cellules voisine
+	 */
 	ArrayList<ICellule> getAdjacentEntities(ICellule cellule);
 
+	/**
+	 * Donne la cellule de l'entity passé en paramètre
+	 * @param entity dont on veut connaitre la cellule
+	 * @return la cellule de l'entity passé en paramètre
+	 */
 	ICellule findEntity(IEntity entity);
 
 }

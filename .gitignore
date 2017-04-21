@@ -6,3 +6,6 @@ out/
 .classpath
 *.class
 .settings/org.eclipse.jdt.core.prefs
+*.html
+doc/package-list
+*.js

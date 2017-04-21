@@ -14,6 +14,10 @@ import framework.publicInterfaces.Plugin;
  */
 public interface IMapDisplay extends Plugin {
 
+	/**
+	 * Affiche la map passé en paramètre
+	 * @param map la map à afficher
+	 */
 	void display(IMap map);
 
 }

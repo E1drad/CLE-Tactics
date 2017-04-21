@@ -19,7 +19,12 @@ import framework.publicInterfaces.LaunchablePlugin;
  * 
  */
 public interface IGame extends LaunchablePlugin {
-	
+
+
+	/**
+	 * @brief les classes concrete implementatnt IGame peuvent être des singletons
+	 * @return l'instance de la classe. 
+	 */
 	IGame getInstance();
 	
 	int getTurn();
@@ -34,6 +39,15 @@ public interface IGame extends LaunchablePlugin {
 
 	void setCharacters(ArrayList<IEntity> characters);
 
+	IMapDisplay getMapDisplay();
+	
+	void setMapDisplay(IMapDisplay mapDisplay);
+	/**
+	 * ajoute une entity sur la carte.
+	 * @param entity
+	 * @param height la 1ere coordonnées, l'abscisse
+	 * @param width la 2eme coordonnées, l'ordonnée
+	 */
 	void addCharactersOnMap(IEntity entity, int height, int width);
 
 }

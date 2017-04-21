@@ -235,4 +235,15 @@ public class GuiGame  implements IGame{
         }
         return INSTANCE;
     }
+
+	@Override
+	public IMapDisplay getMapDisplay() {
+		return this.mapDisplay;
+	}
+
+	@Override
+	public void setMapDisplay(IMapDisplay mapDisplay) {
+		this.mapDisplay = mapDisplay;		
+	}
+	
 }

@@ -66,7 +66,7 @@ public class BaseGame implements IGame{
 		while(this.characters.size() > 1){
 			i = 0;
 			while(i < this.characters.size()){
-				//TODO death is not handle
+
 				this.mapDisplay.display(this.map);
 				this.characters.get(i).action(this.map);
 				j = 0;
@@ -124,15 +124,17 @@ public class BaseGame implements IGame{
 		turn = 0;
 		System.out.println("Initializing.");
 		ExtensionLoader loader = ExtensionLoader.getInstance();
-		IAbilityScore abilityScore = (IAbilityScore) loader.newInstanceof("game.publicInterfaces.IAbilityScore");
-		IArtificialIntelligence artificialIntelligence = (IArtificialIntelligence) loader.newInstanceof("game.publicInterfaces.IArtificialIntelligence");
+		
 		IEntity entity1 = (IEntity) loader.newInstanceof("game.publicInterfaces.IEntity");
 		IEntity entity2 = (IEntity) loader.newInstanceof("game.publicInterfaces.IEntity");
 		
-		entity1.setField(abilityScore, 0, "Link", 0, null);
+		entity1.setField( (IAbilityScore) loader.newInstanceof("game.publicInterfaces.IAbilityScore"),
+				0, "Link", 0, null);
 		System.out.println("entity1 has been created.");
 		
-		entity2.setField(abilityScore, 1, "Ganon", 1, artificialIntelligence);
+		entity2.setField( (IAbilityScore) loader.newInstanceof("game.publicInterfaces.IAbilityScore"),
+				1, "Ganon", 1, 
+				(IArtificialIntelligence) loader.newInstanceof("game.publicInterfaces.IArtificialIntelligence"));
 		System.out.println("entity2 has been created.");
 		
 		this.addCharactersOnMap(entity1, 0, 0);
@@ -161,5 +163,15 @@ public class BaseGame implements IGame{
 		if(mapDisplayInterface != null){
 			mapDisplayInterface.loadDependencies();
 		}
+	}
+
+	@Override
+	public IMapDisplay getMapDisplay() {
+		return this.mapDisplay;
+	}
+
+	@Override
+	public void setMapDisplay(IMapDisplay mapDisplay) {
+		this.mapDisplay = mapDisplay;		
 	}
 }
