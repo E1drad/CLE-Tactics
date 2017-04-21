@@ -2,6 +2,7 @@ package framework;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -15,6 +16,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import framework.publicInterfaces.LaunchablePlugin;
+import framework.publicInterfaces.Plugin;
 
 public class ExtensionLoader {
 
@@ -92,24 +94,36 @@ public class ExtensionLoader {
     }
     
     /**
-     * @brief Charge les extensions peu importe leur provenance tant que le dossier où se situe les fichiers ".class" est renseigné.
      * 
+     * @brief Charge les extensions peu importe leur provenance tant que le dossier où se situe les fichiers ".class" est renseigné.
+     * @throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException
      */
-    public void loadExt() throws ClassNotFoundException, InstantiationException, IllegalAccessException, MalformedURLException {
+    public void loadExt() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
     	
     	for(ExtensionDescr descr : extensions_ar) {
     		File f = new File(descr.getPath());
-
         	URL[] cp = {f.toURI().toURL()};
         	@SuppressWarnings("resource")
 			URLClassLoader urlcl = new URLClassLoader(cp);
         	Class<?> clazz = urlcl.loadClass(descr.getClass_name());
-
-        	//Object res = clazz.newInstance();
         	this.mapClassInterface.put(descr.getInterface_name(), clazz);
+        	{
+        		Object obj = clazz.newInstance();
+	        	if(obj instanceof Plugin){
+	        		((Plugin) obj).loadDependencies();
+	        	}
+        	}
             System.out.println("Chargement de la classe " + descr.getClass_name());
         	descr.setRunning(true);
-
+        	int pos;
+            pos = this.extensions.indexOf(descr);
+            if(pos != -1){
+            	this.extensions.get(pos).setRunning(true);
+            }
+            pos = this.extensionsLP.indexOf(descr);
+            if(pos != -1){
+            	this.extensionsLP.get(pos).setRunning(true);
+            }
     	}    	
     }
 
@@ -126,9 +140,27 @@ public class ExtensionLoader {
 	                    Class<?> cl = Class.forName(descr.getClass_name());
 	                    Object res  = cl.newInstance();
 	                    descr.setRunning(true);
+	                    int pos;
+	                    pos = this.extensions_ar.indexOf(descr);
+	                    if(pos != -1){
+	                    	this.extensions_ar.get(pos).setRunning(true);
+	                    }
+	                    pos = this.extensionsLP.indexOf(descr);
+	                    if(pos != -1){
+	                    	this.extensionsLP.get(pos).setRunning(true);
+	                    }
+	                    /*else if(res instanceof LaunchablePlugin){
+	                    	this.extensionsLP.add(descr);
+	                    	this.extensionsLP.get(this.extensionsLP.size()-1).setRunning(true);
+	                    }*/
 	                	this.mapClassInterface.put(descr.getInterface_name(), cl);
 	                    System.out.println("\tChargement d'une dependance : la classe " + descr.getClass_name());
-
+	                	{
+	                		Object obj = cl.newInstance();
+	        	        	if(obj instanceof Plugin){
+	        	        		((Plugin) obj).loadDependencies();
+	        	        	}
+	                	}
 	                    return res;
 	
 	                } catch (ClassNotFoundException e1) {
@@ -208,12 +240,11 @@ public class ExtensionLoader {
 			for(ExtensionDescr descr : extensionsLP){
 				if(descr.isRunning()){
 					if(descr.getInterface_name() != null){
-						System.out.println("Lancement de la classe " + descr.getClass_name());
 						
 						Class<?> cl = Class.forName(descr.getClass_name());
 	                    Object res  = cl.newInstance();
 	                    if(res instanceof LaunchablePlugin){
-	                    	//((LaunchablePlugin) res).launch();
+							System.out.println("Lancement de la classe " + descr.getClass_name());
 	                    	LaunchablePluginThread thread = new LaunchablePluginThread(descr.getInterface_name());
 	                    	thread.start();
 	                    }

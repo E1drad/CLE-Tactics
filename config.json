@@ -2,8 +2,8 @@
   "extension": [
     {
       "name" : "Cellule",
-      "class_name" : "plugins.plugin.basecellule.BaseCellule",
-      "interface" : "framework.publicInterfaces.ICellule",
+      "class_name" : "plugins.game.baseCellule.BaseCellule",
+      "interface" : "game.publicInterfaces.ICellule",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -11,8 +11,8 @@
     },
      {
       "name" : "ArtificialIntelligence",
-      "class_name" : "plugins.plugin.baseia.BaseArtificialIntelligence",
-      "interface" : "framework.publicInterfaces.IArtificialIntelligence",
+      "class_name" : "plugins.game.baseArtificialIntelligence.BaseArtificialIntelligence",
+      "interface" : "game.publicInterfaces.IArtificialIntelligence",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -20,8 +20,8 @@
     },
     {
       "name" : "AbilityScore",
-      "class_name" : "plugins.plugin.baseability.BaseAbilityScore",
-      "interface" : "framework.publicInterfaces.IAbilityScore",
+      "class_name" : "plugins.game.baseAbilityScore.BaseAbilityScore",
+      "interface" : "game.publicInterfaces.IAbilityScore",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -30,8 +30,8 @@
     
     {
       "name" : "Entity",
-      "class_name" : "plugins.plugin.baseentity.BaseEntity",
-      "interface" : "framework.publicInterfaces.IEntity",
+      "class_name" : "plugins.game.baseEntity.BaseEntity",
+      "interface" : "game.publicInterfaces.IEntity",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -39,8 +39,8 @@
     },
      {
       "name" : "GameMenu",
-      "class_name" : "plugins.plugin.basegamemenu.BaseGameMenu",
-      "interface" : "framework.publicInterfaces.IGameMenu",
+      "class_name" : "plugins.game.baseGameMenu.BaseGameMenu",
+      "interface" : "game.publicInterfaces.IGameMenu",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -48,8 +48,8 @@
     },
     {
       "name" : "MapDisplay",
-      "class_name" : "plugins.plugin.basemapdisplay.BaseMapDisplay",
-      "interface" : "framework.publicInterfaces.IMapDisplay",
+      "class_name" : "plugins.game.baseMapDisplay.BaseMapDisplay",
+      "interface" : "game.publicInterfaces.IMapDisplay",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -57,8 +57,8 @@
     },
     {
       "name" : "Map",
-      "class_name" : "plugins.plugin.basemap.BaseMap",
-      "interface" : "framework.publicInterfaces.IMap",
+      "class_name" : "plugins.game.baseMap.BaseMap",
+      "interface" : "game.publicInterfaces.IMap",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : false,
@@ -66,8 +66,8 @@
     },
     {
       "name" : "CLE-Tactics",
-      "class_name" : "plugins.plugin.basegame.BaseGame",
-      "interface" : "framework.publicInterfaces.IGame",
+      "class_name" : "plugins.game.baseGame.BaseGame",
+      "interface" : "game.publicInterfaces.IGame",
       "path" : "./bin",
       "description" : "Module de base du jeu",
       "autorun" : true,
@@ -75,8 +75,8 @@
     },
     {
       "name" : "Monitoring",
-      "class_name" : "plugins.plugin.monitor.BaseMonitor",
-      "interface" : "framework.publicInterfaces.IMonitor",
+      "class_name" : "plugins.monitor.BaseMonitor",
+      "interface" : "monitor.publicInterfaces.IMonitor",
       "path" : "./bin",
       "description" : "Module de supervision",
       "autorun" : true,
